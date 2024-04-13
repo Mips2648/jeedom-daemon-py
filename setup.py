@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     # Needed to silence warnings (and to be a worthwhile package)
-    name='jeedom-daemon-py',
+    name='jeedomdaemon',
     url='https://github.com/Mips2648/jeedom-daemon-py',
     author='Mips',
     # author_email='',
