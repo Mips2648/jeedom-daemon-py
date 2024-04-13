@@ -1,15 +1,15 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     # Needed to silence warnings (and to be a worthwhile package)
-    name='Jeedom daemon',
+    name='jeedom-daemon-py',
     url='https://github.com/Mips2648/jeedom-daemon-py',
     author='Mips',
     # author_email='',
     # Needed to actually package something
-    packages=['jeedom-daemon-py'],
+    packages=find_packages(),
     # Needed for dependencies
-    # install_requires=['numpy'],
+    install_requires=['aiohttp'],
     # *strongly* suggested for sharing
     version='0.1',
     # The license can be anything you like
