@@ -48,7 +48,7 @@ class BaseDaemon:
     def stop(self):
         if self._on_stop_cb is not None:
             self._on_stop_cb()
-        # tasks = [t for t in asyncio.all_tasks() if t is not asyncio.current_task()]
+        tasks = [t for t in asyncio.all_tasks() if t is not asyncio.current_task()]
         tasks = asyncio.all_tasks()
         [task.cancel() for task in tasks]
         self._logger.info("Cancelling %i outstanding tasks", len(tasks))
