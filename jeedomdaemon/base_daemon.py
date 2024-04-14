@@ -4,8 +4,8 @@ import asyncio
 import functools
 from typing import Callable, Awaitable
 
-from aio_connector import Publisher, Listener
-from jeedomdaemon.base_config import BaseConfig
+from .aio_connector import Publisher, Listener
+from .base_config import BaseConfig
 
 class BaseDaemon:
     def __init__(self,
