@@ -2,6 +2,7 @@ import argparse
 
 class BaseConfig(object):
     def __init__(self):
+        self._args = None
         self.__parser = argparse.ArgumentParser(description='Daemon for Jeedom plugin')
         self.add_argument("--loglevel", help="Log Level for the daemon", type=str, default='error')
         self.add_argument("--sockethost", help="Socket host", type=str, default='127.0.0.1')
@@ -14,7 +15,8 @@ class BaseConfig(object):
         return self.__parser.add_argument(*args, **kwargs)
 
     def parse(self):
-        self._args = self.__parser.parse_args()
+        if self._args is None:
+            self._args = self.__parser.parse_args()
 
     @property
     def callback_url(self):

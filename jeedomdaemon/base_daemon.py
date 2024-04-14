@@ -20,15 +20,24 @@ class BaseDaemon:
                  on_stop_cb: Callable[..., None] | None = None,
                  ) -> None:
         self._config = config
+        self._config.parse()
         self._listen_task = None
         self._loop = None
         self._logger = logging.getLogger(__name__)
+        self.__log_level = Utils.convert_log_level(self._config.log_level)
         self._on_start_cb = on_start_cb
         self._on_message_cb = on_message_cb
         self._on_stop_cb = on_stop_cb
 
         Utils.init_logger(self._config.log_level)
         logging.getLogger('asyncio').setLevel(logging.WARNING)
+
+    def setLoggerLoglevel(self, loggerName: str):
+        logging.getLogger(loggerName).setLevel(self.__log_level)
+
+    @property
+    def log_level(self):
+        return self.__log_level
 
     def run(self):
         try:
