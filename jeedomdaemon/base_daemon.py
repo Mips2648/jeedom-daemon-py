@@ -3,6 +3,7 @@ import signal
 import asyncio
 import functools
 from typing import Callable, Awaitable
+from __future__ import annotations
 
 from .aio_connector import Publisher, Listener
 from .base_config import BaseConfig
