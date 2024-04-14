@@ -28,7 +28,7 @@ class Listener():
     async def listen(self):
         """ listen function, as task should be made out of it. Don't use this function directly by use `create_listen_task()` instead"""
         try:
-            server = await asyncio.start_server(self._handle_read, self._socket_host, port=self._socket_port)
+            server = await asyncio.start_server(self.__handle_read, self._socket_host, port=self._socket_port)
 
             async with server:
                 self._logger.info('Listening on %s:%s', self._socket_host, self._socket_port)
@@ -36,7 +36,7 @@ class Listener():
         except asyncio.CancelledError:
             self._logger.info("Listening cancelled")
 
-    async def _handle_read(self, reader: asyncio.StreamReader, writer: asyncio.StreamWriter):
+    async def __handle_read(self, reader: asyncio.StreamReader, writer: asyncio.StreamWriter):
         data = await reader.read()
         message = data.decode()
         addr = writer.get_extra_info('peername')
