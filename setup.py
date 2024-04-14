@@ -11,7 +11,7 @@ setup(
     # Needed for dependencies
     install_requires=['aiohttp'],
     # *strongly* suggested for sharing
-    version='0.2',
+    version='0.3',
     # The license can be anything you like
     license='MIT',
     description='A base to implement Jeedom daemon in python',
