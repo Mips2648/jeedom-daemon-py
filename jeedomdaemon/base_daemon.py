@@ -43,12 +43,13 @@ class BaseDaemon:
         await self._add_signal_handler()
         await asyncio.sleep(1) # allow  all tasks to start
 
-        await asyncio.gather(self._listen_task, self._send_task)
+        # await asyncio.gather(self._listen_task, self._send_task)
+        await self._listen_task
 
     def stop(self):
         if self._on_stop_cb is not None:
             self._on_stop_cb()
-        asyncio.create_task(asyncio.sleep(1))
+
         tasks = [t for t in asyncio.all_tasks() if t is not asyncio.current_task()]
         tasks = asyncio.all_tasks()
         [task.cancel() for task in tasks]
