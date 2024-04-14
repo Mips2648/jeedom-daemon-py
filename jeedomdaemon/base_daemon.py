@@ -62,23 +62,25 @@ class BaseDaemon:
     async def _run(self):
         if self._config.socket_port < 1024 or self._config.socket_port>65535:
             raise ValueError()
-        self._jeedom_publisher = Publisher(self._config.callback_url, self._config.api_key)
-        if not await self._jeedom_publisher.test_callback():
-            return
 
         self._loop = asyncio.get_running_loop()
-
-        if self._on_start_cb is not None and asyncio.iscoroutinefunction(self._on_start_cb):
-            await self._on_start_cb()
-
         self._listen_task = Listener.create_listen_task(self._config.socket_host, self._config.socket_port, self._on_socket_message)
-        self._send_task = self._jeedom_publisher.create_send_task()
 
-        await self._add_signal_handler()
-        await asyncio.sleep(1) # allow  all tasks to start
+        async with Publisher(self._config.callback_url, self._config.api_key) as self._jeedom_publisher:
+            # self._jeedom_publisher = Publisher(self._config.callback_url, self._config.api_key)
+            if not await self._jeedom_publisher.test_callback():
+                return
 
-        # await asyncio.gather(self._listen_task, self._send_task)
-        await self._listen_task
+            if self._on_start_cb is not None and asyncio.iscoroutinefunction(self._on_start_cb):
+                await self._on_start_cb()
+
+            self._send_task = self._jeedom_publisher.create_send_task()
+
+            await self._add_signal_handler()
+            await asyncio.sleep(1) # allow  all tasks to start
+
+            # await asyncio.gather(self._listen_task, self._send_task)
+            await self._listen_task
 
     def __ask_exit(self, sig):
         self._logger.info("Signal %i caught, exiting...", sig)
