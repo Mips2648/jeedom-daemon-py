@@ -58,6 +58,9 @@ class Publisher():
 
         self.__changes = {}
 
+    def __del__(self):
+        asyncio.create_task(self._jeedom_session.close())
+
     def create_send_task(self):
         """ Helper function to create the send task"""
         return asyncio.create_task(self._send_async())
