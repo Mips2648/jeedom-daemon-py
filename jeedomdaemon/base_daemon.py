@@ -2,11 +2,13 @@ from __future__ import annotations
 
 import logging
 import signal
+import os
+import sys
 import asyncio
 import functools
 from typing import Callable, Awaitable
 
-
+from .utils import Utils
 from .aio_connector import Publisher, Listener
 from .base_config import BaseConfig
 
@@ -25,7 +27,30 @@ class BaseDaemon:
         self._on_message_cb = on_message_cb
         self._on_stop_cb = on_stop_cb
 
-    async def start(self):
+        Utils.init_logger(self._config.log_level)
+        logging.getLogger('asyncio').setLevel(logging.WARNING)
+
+    def run(self):
+        try:
+            self._logger.info('Starting daemon with log level: %s', self._config.log_level)
+            Utils.write_pid(str(self._config.pid_filename))
+
+            asyncio.run(self._run())
+        except Exception as e:
+            self._logger.error('Fatal error: %s', e)
+        finally:
+            self._logger.info("Shutdown")
+            try:
+                self._logger.debug("Removing PID file %s", self._config.pid_filename)
+                os.remove(self._config.pid_filename)
+            except:
+                pass
+
+            self._logger.debug("Exit 0")
+            sys.stdout.flush()
+            sys.exit(0)
+
+    async def _run(self):
         if self._config.socket_port < 1024 or self._config.socket_port>65535:
             raise ValueError()
         self._jeedom_publisher = Publisher(self._config.callback_url, self._config.api_key)
@@ -46,7 +71,8 @@ class BaseDaemon:
         # await asyncio.gather(self._listen_task, self._send_task)
         await self._listen_task
 
-    def stop(self):
+    def __ask_exit(self, sig):
+        self._logger.info("Signal %i caught, exiting...", sig)
         if self._on_stop_cb is not None:
             self._on_stop_cb()
 
@@ -58,10 +84,6 @@ class BaseDaemon:
             asyncio.gather(*tasks, return_exceptions=True)
         except Exception as e:
             self._logger.warning("Some exception occured during cancellation: %s", e)
-
-    def __ask_exit(self, sig):
-        self._logger.info("Signal %i caught, exiting...", sig)
-        self.stop()
 
     async def _add_signal_handler(self):
         self._loop.add_signal_handler(signal.SIGINT, functools.partial(self.__ask_exit, signal.SIGINT))
