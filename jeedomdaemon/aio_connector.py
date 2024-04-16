@@ -80,6 +80,9 @@ class Publisher():
             return False
         return True
 
+    def create_task_send_to_jeedom(self, payload):
+        asyncio.create_task(self.send_to_jeedom(payload))
+
     async def _send_async(self):
         self._logger.info("Send async started")
         try:
