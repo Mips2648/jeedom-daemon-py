@@ -66,7 +66,7 @@ class Publisher():
 
     def create_send_task(self):
         """ Helper function to create the send task"""
-        return asyncio.create_task(self._send_async())
+        return asyncio.create_task(self._send_task())
 
     async def test_callback(self):
         """test_callback will return true if communication with Jeedom is sucessfull or false otherwise"""
@@ -80,10 +80,7 @@ class Publisher():
             return False
         return True
 
-    def create_task_send_to_jeedom(self, payload):
-        asyncio.create_task(self.send_to_jeedom(payload))
-
-    async def _send_async(self):
+    async def _send_task(self):
         self._logger.info("Send async started")
         try:
             last_send_on_error = False
@@ -107,10 +104,17 @@ class Publisher():
         except asyncio.CancelledError:
             self._logger.info("Send async cancelled")
 
+    def run_send_to_jeedom(self, payload):
+        """
+        Will run coroutine to send the payload provided.
+        A running loop must exist
+        """
+        _loop = asyncio.get_running_loop()
+        return asyncio.run_coroutine_threadsafe(self.send_to_jeedom(payload), _loop)
 
     async def send_to_jeedom(self, payload):
         """
-        Will immediately send the payload provided.
+        Will send the payload provided.
         return true or false if successful
         """
         self._logger.debug('Send to jeedom :  %s', payload)
