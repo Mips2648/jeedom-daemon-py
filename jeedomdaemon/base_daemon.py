@@ -36,8 +36,8 @@ class BaseDaemon:
         Utils.init_logger(self._config.log_level)
         logging.getLogger('asyncio').setLevel(logging.WARNING)
 
-    def setLoggerLoglevel(self, loggerName: str):
-        logging.getLogger(loggerName).setLevel(self.log_level)
+    def set_logger_log_level(self, logger_name: str):
+        logging.getLogger(logger_name).setLevel(self.log_level)
 
     @property
     def log_level(self):

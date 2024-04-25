@@ -1,14 +1,12 @@
+"""Test class for base config."""
+
 import sys
 import os
+import unittest
 
 sys.path.append(os.path.realpath(os.path.dirname(__file__) + '/..'))
 
-# now we can import the module in the parent
-# directory.
-
-import unittest
-
-from jeedomdaemon.base_config import BaseConfig
+from jeedomdaemon.base_config import BaseConfig # pylint: disable=wrong-import-position
 
 class TestBaseConfig(unittest.TestCase):
     def test_base_config_creation(self):
@@ -39,15 +37,15 @@ class TestBaseConfig(unittest.TestCase):
         class TestConfig(BaseConfig):
             def __init__(self):
                 super().__init__()
-                self.add_argument("--clientId", help="my client Id", type=str)
+                self.add_argument("--clientId", type=str)
 
             @property
-            def clientId(self):
+            def client_id(self):
                 return str(self._args.clientId)
 
         config = TestConfig()
         config.parse(['--clientId', 'hfldhfsd'])
-        self.assertEqual(config.clientId, "hfldhfsd")
+        self.assertEqual(config.client_id, "hfldhfsd")
 
 
 
