@@ -1,3 +1,5 @@
+"""Module providing a base class to parse config of your daemon."""
+
 from __future__ import annotations
 
 import argparse

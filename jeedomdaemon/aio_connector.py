@@ -7,7 +7,10 @@ import aiohttp
 
 
 class Listener():
-    """This class allow to create an asyncio task that will open a socket server and listen to it until task is canceled. `on_message` call_back will be call with the message as a list as argument"""
+    """
+    This class allow to create an asyncio task that will open a socket server and listen to it until task is canceled.
+    `on_message` call_back will be call with the message as a list as argument
+    """
     def __new__(cls, *args, **kwargs):
         if not hasattr(cls, 'instance'):
             cls.instance = super().__new__(cls)

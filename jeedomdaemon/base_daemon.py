@@ -1,3 +1,5 @@
+"""Module providing a base class for your daemon."""
+
 from __future__ import annotations
 
 import logging
