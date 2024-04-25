@@ -1,4 +1,5 @@
 import argparse
+from typing import Sequence
 
 class BaseConfig(object):
     def __init__(self):
@@ -14,9 +15,9 @@ class BaseConfig(object):
     def add_argument(self, *args, **kwargs):
         return self.__parser.add_argument(*args, **kwargs)
 
-    def parse(self):
+    def parse(self, args: Sequence[str] | None = None):
         if self._args is None:
-            self._args = self.__parser.parse_args()
+            self._args = self.__parser.parse_args(args)
 
     @property
     def callback_url(self):
