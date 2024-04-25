@@ -15,6 +15,7 @@ from .aio_connector import Publisher, Listener
 from .base_config import BaseConfig
 
 class BaseDaemon:
+    """Base daemon class"""
     def __init__(self,
                  config: BaseConfig,
                  on_start_cb: Callable[...,Awaitable[None]] | None = None,
@@ -37,13 +38,16 @@ class BaseDaemon:
         logging.getLogger('asyncio').setLevel(logging.WARNING)
 
     def set_logger_log_level(self, logger_name: str):
+        """ Helper function to set the log level to the given logger"""
         logging.getLogger(logger_name).setLevel(self.log_level)
 
     @property
     def log_level(self):
+        """ Return the log level"""
         return self.__log_level
 
     def run(self):
+        """ Run your daemon, this is the function you should call! """
         try:
             self._logger.info('Starting daemon with log level: %s', self._config.log_level)
             Utils.write_pid(str(self._config.pid_filename))
@@ -86,6 +90,7 @@ class BaseDaemon:
             await self._listen_task
 
     def stop(self):
+        """ Stop your daemon if need be"""
         if self._on_stop_cb is not None:
             self._on_stop_cb()
 

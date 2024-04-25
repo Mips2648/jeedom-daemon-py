@@ -6,6 +6,7 @@ import argparse
 from typing import Sequence
 
 class BaseConfig():
+    """Base config class, if you need custom configuration you can inherit from this class"""
     def __init__(self):
         self._args = None
         self.__parser = argparse.ArgumentParser(description='Daemon for Jeedom plugin')
