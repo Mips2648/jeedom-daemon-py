@@ -23,8 +23,10 @@ class BaseDaemon:
                  ) -> None:
         self._config = config
         self._config.parse()
-        self._listen_task = None
+        self._listen_task: asyncio.Task[None] | None = None
+        self._send_task: asyncio.Task[None] | None = None
         self._loop = None
+        self._jeedom_publisher: Publisher | None = None
         self._logger = logging.getLogger(__name__)
         self.__log_level = Utils.convert_log_level(self._config.log_level)
         self._on_start_cb = on_start_cb
@@ -47,14 +49,14 @@ class BaseDaemon:
             Utils.write_pid(str(self._config.pid_filename))
 
             asyncio.run(self.__run())
-        except Exception as e:
+        except Exception as e: # pylint: disable=broad-exception-caught
             self._logger.error('Fatal error: %s', e)
         finally:
             self._logger.info("Shutdown")
             try:
                 self._logger.debug("Removing PID file %s", self._config.pid_filename)
                 os.remove(self._config.pid_filename)
-            except:
+            except: # pylint: disable=bare-except
                 pass
 
             self._logger.debug("Exit 0")
@@ -89,11 +91,12 @@ class BaseDaemon:
 
         tasks = [t for t in asyncio.all_tasks() if t is not asyncio.current_task()]
         tasks = asyncio.all_tasks()
-        [task.cancel() for task in tasks]
         self._logger.info("Cancelling %i outstanding tasks", len(tasks))
+        for task in tasks:
+            task.cancel()
         try:
             asyncio.gather(*tasks, return_exceptions=True)
-        except Exception as e:
+        except BaseException as e: # pylint: disable=broad-exception-caught
             self._logger.warning("Some exception occured during cancellation: %s", e)
 
     def __ask_exit(self, sig):
@@ -112,5 +115,5 @@ class BaseDaemon:
             if self._on_message_cb is not None:
                 await self._on_message_cb(message)
 
-        except Exception as e:
+        except Exception as e: # pylint: disable=broad-exception-caught
             self._logger.error('Send command to demon error: %s', e)

@@ -1,3 +1,5 @@
+"""Module providing Listener & Publisher class for your daemon."""
+
 import logging
 import json
 import asyncio
@@ -78,7 +80,7 @@ class Publisher():
                 if resp.status != 200:
                     self._logger.error("Please check your network configuration page: %s-%s", resp.status, resp.reason)
                     return False
-        except Exception as e:
+        except aiohttp.ClientError as e:
             self._logger.error('Callback error: %s. Please check your network configuration page', e)
             return False
         return True
@@ -93,8 +95,9 @@ class Publisher():
                     self.__changes = {}
 
                     try:
-                        await self.send_to_jeedom(changes)
-                    except Exception as e:
+                        if not await self.send_to_jeedom(changes):
+                            await self.__merge_dict(self.__changes,changes)
+                    except aiohttp.ClientError as e:
                         if last_send_on_error:
                             self._logger.error("error during send: %s", e)
                         else:
