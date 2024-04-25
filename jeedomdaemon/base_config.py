@@ -5,7 +5,7 @@ from __future__ import annotations
 import argparse
 from typing import Sequence
 
-class BaseConfig(object):
+class BaseConfig():
     def __init__(self):
         self._args = None
         self.__parser = argparse.ArgumentParser(description='Daemon for Jeedom plugin')
