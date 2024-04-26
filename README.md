@@ -44,7 +44,7 @@ pip3 install jeedomdaemon
 jeedomdaemon~=0.7.3
 ```
 
-## Create a daemon skeleton
+## Quick start
 
 Create a file `myDaemon.py` and copy/past the 4 lines of code below and that's it, nothing else to do, your daemon is good to start.
 
@@ -58,3 +58,7 @@ myDaemon().run()
 ```
 
 Of course, this does nothing so far except starting, accepting incoming requests from your php code and stopping when it is needed.
+
+## What's next
+
+I suggest you to take a look at this [demo plugin](https://github.com/Mips2648/jeedom-aiodemo) which implement this library
