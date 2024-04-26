@@ -16,6 +16,7 @@ class BaseConfig():
         self.add_argument("--callback", help="Jeedom callback url", type=str)
         self.add_argument("--apikey", help="Plugin API Key", type=str)
         self.add_argument("--pid", help="daemon pid", type=str)
+        self.add_argument("--cycle", help="cycle", type=float)
 
     def add_argument(self, *args, **kwargs):
         """Add a, argurment to parse.
@@ -62,3 +63,8 @@ class BaseConfig():
     def pid_filename(self):
         """Return the pid."""
         return str(self._args.pid)
+
+    @property
+    def cycle(self):
+        """Return the cycle."""
+        return float(self._args.cycle)
