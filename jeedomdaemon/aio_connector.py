@@ -71,7 +71,7 @@ class Publisher():
 
     def create_send_task(self):
         """ Helper function to create the send task"""
-        return asyncio.create_task(self._send_task())
+        return asyncio.create_task(self.__send_task())
 
     async def test_callback(self):
         """test_callback will return true if communication with Jeedom is sucessfull or false otherwise"""
@@ -85,7 +85,7 @@ class Publisher():
             return False
         return True
 
-    async def _send_task(self):
+    async def __send_task(self):
         self._logger.info("Send async started")
         try:
             last_send_on_error = False
