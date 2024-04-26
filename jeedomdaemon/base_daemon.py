@@ -17,7 +17,7 @@ from .base_config import BaseConfig
 class BaseDaemon:
     """Base daemon class"""
     def __init__(self,
-                 config: BaseConfig,
+                 config: BaseConfig = BaseConfig(),
                  on_start_cb: Callable[...,Awaitable[None]] | None = None,
                  on_message_cb: Callable[[list], Awaitable[None]] | None = None,
                  on_stop_cb: Callable[..., None] | None = None,
