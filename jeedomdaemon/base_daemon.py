@@ -24,15 +24,14 @@ class BaseDaemon:
                  ) -> None:
         self._config = config
         self._config.parse()
-        self._listen_task: asyncio.Task[None] | None = None
-        self._send_task: asyncio.Task[None] | None = None
+        self.__listen_task: asyncio.Task[None] | None = None
         self._loop = None
         self._jeedom_publisher: Publisher | None = None
         self._logger = logging.getLogger(__name__)
         self.__log_level = Utils.convert_log_level(self._config.log_level)
-        self._on_start_cb = on_start_cb
-        self._on_message_cb = on_message_cb
-        self._on_stop_cb = on_stop_cb
+        self.__on_start_cb = on_start_cb
+        self.__on_message_cb = on_message_cb
+        self.__on_stop_cb = on_stop_cb
 
         Utils.init_logger(self._config.log_level)
         logging.getLogger('asyncio').setLevel(logging.WARNING)
@@ -72,27 +71,27 @@ class BaseDaemon:
             raise ValueError()
 
         self._loop = asyncio.get_running_loop()
-        self._listen_task = Listener.create_listen_task(self._config.socket_host, self._config.socket_port, self.__on_socket_message)
+        self.__listen_task = Listener.create_listen_task(self._config.socket_host, self._config.socket_port, self.__on_socket_message)
 
         async with Publisher(self._config.callback_url, self._config.api_key) as self._jeedom_publisher:
             # self._jeedom_publisher = Publisher(self._config.callback_url, self._config.api_key)
             if not await self._jeedom_publisher.test_callback():
                 return
 
-            if self._on_start_cb is not None and asyncio.iscoroutinefunction(self._on_start_cb):
-                await self._on_start_cb()
+            if self.__on_start_cb is not None and asyncio.iscoroutinefunction(self.__on_start_cb):
+                await self.__on_start_cb()
 
-            self._send_task = self._jeedom_publisher.create_send_task()
+            self._jeedom_publisher.create_send_task()
 
             await self.__add_signal_handler()
             await asyncio.sleep(1) # allow  all tasks to start
 
-            await self._listen_task
+            await self.__listen_task
 
     def stop(self):
         """ Stop your daemon if need be"""
-        if self._on_stop_cb is not None:
-            self._on_stop_cb()
+        if self.__on_stop_cb is not None:
+            self.__on_stop_cb()
 
         tasks = [t for t in asyncio.all_tasks() if t is not asyncio.current_task()]
         tasks = asyncio.all_tasks()
@@ -117,8 +116,8 @@ class BaseDaemon:
             self._logger.error('Invalid apikey from socket : %s', message)
             return
         try:
-            if self._on_message_cb is not None:
-                await self._on_message_cb(message)
+            if self.__on_message_cb is not None:
+                await self.__on_message_cb(message)
 
         except Exception as e: # pylint: disable=broad-exception-caught
             self._logger.error('Send command to demon error: %s', e)
