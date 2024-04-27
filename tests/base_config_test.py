@@ -29,8 +29,9 @@ class TestBaseConfig(unittest.TestCase):
         self.assertEqual(config.callback_url, "http://localhost/path")
         self.assertEqual(config.api_key, "cnysltyql")
         self.assertEqual(config.pid_filename, "123")
+        self.assertEqual(config.cycle, 0.5)
 
-    def test_custom_config_parse(self):
+    def test_custom_config_parse_with_property(self):
         """
         Test that it can parse config
         """
@@ -46,6 +47,19 @@ class TestBaseConfig(unittest.TestCase):
         config = TestConfig()
         config.parse(['--clientId', 'hfldhfsd'])
         self.assertEqual(config.client_id, "hfldhfsd")
+
+    def test_custom_config_parse_without_property(self):
+        """
+        Test that it can parse config
+        """
+        class TestConfig(BaseConfig):
+            def __init__(self):
+                super().__init__()
+                self.add_argument("--clientId", type=str)
+
+        config = TestConfig()
+        config.parse(['--clientId', 'hfldhfsd'])
+        self.assertEqual(config.clientId, "hfldhfsd")
 
 
 
