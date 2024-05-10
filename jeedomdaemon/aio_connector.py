@@ -123,7 +123,7 @@ class Publisher():
         Will send the payload provided.
         return true or false if successful
         """
-        self._logger.debug('Send to jeedom :  %s', payload)
+        self._logger.debug('Send to jeedom: %s', payload)
         async with self._jeedom_session.post(self._callback_url + '?apikey=' + self._api_key, json=payload) as resp:
             if resp.status != 200:
                 self._logger.error('Error on send request to jeedom, return %s-%s', resp.status, resp.reason)

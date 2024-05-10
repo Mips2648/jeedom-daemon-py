@@ -18,9 +18,9 @@ class BaseDaemon:
     """Base daemon class"""
     def __init__(self,
                  config: BaseConfig = BaseConfig(),
-                 on_start_cb: Callable[...,Awaitable[None]] | None = None,
+                 on_start_cb: Callable[..., Awaitable[None]] | None = None,
                  on_message_cb: Callable[[list], Awaitable[None]] | None = None,
-                 on_stop_cb: Callable[..., None] | None = None,
+                 on_stop_cb: Callable[..., Awaitable[None]] | None = None,
                  ) -> None:
         self._config = config
         self._config.parse()
@@ -91,7 +91,13 @@ class BaseDaemon:
     def stop(self):
         """ Stop your daemon if need be"""
         if self.__on_stop_cb is not None:
-            self.__on_stop_cb()
+            future = asyncio.run_coroutine_threadsafe(self.__on_stop_cb(), self._loop)
+            try:
+                future.result(2)
+            except asyncio.TimeoutError:
+                self._logger.warning('The on_stop coroutine took too long')
+            except Exception as exc:
+                self._logger.error('The on_stop coroutine raised an exception: %s', exc)
 
         tasks = [t for t in asyncio.all_tasks() if t is not asyncio.current_task()]
         tasks = asyncio.all_tasks()
