@@ -54,6 +54,7 @@ class BaseDaemon:
             asyncio.run(self.__run())
         except Exception as e: # pylint: disable=broad-exception-caught
             self._logger.error('Fatal error: %s', e)
+            self.stop()
         finally:
             self._logger.info("Shutdown")
             try:
@@ -90,14 +91,12 @@ class BaseDaemon:
 
     def stop(self):
         """ Stop your daemon if need be"""
+
         if self.__on_stop_cb is not None:
-            future = asyncio.run_coroutine_threadsafe(self.__on_stop_cb(), self._loop)
-            try:
-                future.result(2)
-            except asyncio.TimeoutError:
-                self._logger.warning('The on_stop coroutine took too long')
-            except Exception as exc:
-                self._logger.error('The on_stop coroutine raised an exception: %s', exc)
+            self._logger.info("create on stop callback task")
+            stop_task = asyncio.create_task(self.__on_stop_cb)
+            asyncio.gather(stop_task)
+            self._logger.info("on stop callback task done")
 
         tasks = [t for t in asyncio.all_tasks() if t is not asyncio.current_task()]
         tasks = asyncio.all_tasks()
