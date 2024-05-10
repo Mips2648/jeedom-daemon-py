@@ -54,7 +54,6 @@ class BaseDaemon:
             asyncio.run(self.__run())
         except Exception as e: # pylint: disable=broad-exception-caught
             self._logger.error('Fatal error: %s', e)
-            self.stop()
         finally:
             self._logger.info("Shutdown")
             try:
@@ -89,20 +88,13 @@ class BaseDaemon:
 
             await self.__listen_task
 
-    def stop(self):
+    async def stop(self):
         """ Stop your daemon if need be"""
 
         if self.__on_stop_cb is not None:
-            self._logger.debug("create on stop callback task")
-            stop_task = asyncio.create_task(self.__on_stop_cb())
-            try:
-                asyncio.gather(stop_task, return_exceptions=True)
-            except BaseException as e: # pylint: disable=broad-exception-caught
-                self._logger.warning("Some exception occured during cancellation: %s", e)
-            self._logger.debug("on stop callback task done")
+            await self.__on_stop_cb()
 
         tasks = [t for t in asyncio.all_tasks() if t is not asyncio.current_task()]
-        tasks = asyncio.all_tasks()
         self._logger.info("Cancelling %i outstanding tasks", len(tasks))
         for task in tasks:
             task.cancel()
@@ -113,7 +105,7 @@ class BaseDaemon:
 
     def __ask_exit(self, sig):
         self._logger.info("Signal %i caught, exiting...", sig)
-        self.stop()
+        asyncio.run_coroutine_threadsafe(self.stop(), self._loop)
 
     async def __add_signal_handler(self):
         self._loop.add_signal_handler(signal.SIGINT, functools.partial(self.__ask_exit, signal.SIGINT))
