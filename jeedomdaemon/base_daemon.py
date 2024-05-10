@@ -94,7 +94,7 @@ class BaseDaemon:
 
         if self.__on_stop_cb is not None:
             self._logger.info("create on stop callback task")
-            stop_task = asyncio.create_task(self.__on_stop_cb)
+            stop_task = asyncio.create_task(self.__on_stop_cb())
             asyncio.gather(stop_task)
             self._logger.info("on stop callback task done")
 
