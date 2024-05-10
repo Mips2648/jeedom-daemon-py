@@ -93,10 +93,13 @@ class BaseDaemon:
         """ Stop your daemon if need be"""
 
         if self.__on_stop_cb is not None:
-            self._logger.info("create on stop callback task")
+            self._logger.debug("create on stop callback task")
             stop_task = asyncio.create_task(self.__on_stop_cb())
-            asyncio.gather(stop_task)
-            self._logger.info("on stop callback task done")
+            try:
+                asyncio.gather(stop_task, return_exceptions=True)
+            except BaseException as e: # pylint: disable=broad-exception-caught
+                self._logger.warning("Some exception occured during cancellation: %s", e)
+            self._logger.debug("on stop callback task done")
 
         tasks = [t for t in asyncio.all_tasks() if t is not asyncio.current_task()]
         tasks = asyncio.all_tasks()
