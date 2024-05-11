@@ -130,6 +130,14 @@ class Publisher():
                 return False
         return True
 
+    def run_add_change(self, key: str, value):
+        """
+        Will run coroutine add a key/value pair to the payload of the next cycle.
+        A running loop must exist
+        """
+        _loop = asyncio.get_running_loop()
+        return asyncio.run_coroutine_threadsafe(self.add_change(key, value), _loop)
+
     async def add_change(self, key: str, value):
         """
         Add a key/value pair to the payload of the next cycle, several level can be provided at once by separating key with `::`

@@ -23,9 +23,10 @@ class BaseConfig():
             def __init__(self):
                 super().__init__()
 
-                self.add_argument("--user", help="username", type=str)
-                self.add_argument("--password", help="password", type=str)
+                self.add_argument("--user", type=str, default='john')
+                self.add_argument("--password", type=str)
         ```
+    The first arg is the expected argument from Jeedom, then it's interesting to specify the expected type and if a default value if needed
     """
     def __init__(self):
         self._args = None
@@ -42,9 +43,11 @@ class BaseConfig():
         """Add a, argurment to parse.
 
         e.g. from your child class:
-
-        * self.add_argument("--clientId", type=str)
-        * self.add_argument("--intValue", type=int)
+            ```
+            self.add_argument("--clientId", type=str)
+            self.add_argument("--intValue", type=int, default=5)
+            ```
+        The first arg is the expected argument from Jeedom, then it's interesting to specify the expected type and a default value if needed
         """
         return self.__parser.add_argument(*args, **kwargs)
 

@@ -89,7 +89,7 @@ class MyDaemon(BaseDaemon):
         """
         pass
 
-    def on_stop(self):
+    async def on_stop(self):
         """
         This callback will be called when daemon need to stop`
         You need to close your remote connexions and cancel background tasks if any here.

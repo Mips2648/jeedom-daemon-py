@@ -15,7 +15,40 @@ from .aio_connector import Publisher, Listener
 from .base_config import BaseConfig
 
 class BaseDaemon:
-    """Base daemon class"""
+    """Base daemon class for your daemon
+
+    You should inherit your daemon from it and implement the needed functions amongst on_start, on_message and on_stop
+
+        ```
+        class MyDaemon(BaseDaemon):
+            def __init__(self) -> None:
+                # Standard initialisation
+                super().__init__(on_start_cb=self.on_start, on_message_cb=self.on_message, on_stop_cb=self.on_stop)
+
+                # Add here any initialisation your daemon would need
+
+            async def on_start(self):
+                # if you don't have specific action to do on start, do not create this method
+                pass
+
+
+            async def on_message(self, message: list):
+                pass
+
+            async def on_stop(self):
+                # if you don't have specific action to do on stop, do not create this method
+                pass
+        ```
+
+    To send feeback to Jeedom you have 4 possibilities depending your use case.
+    If you are in an async method:
+        * await self._publisher.send_to_jeedom(payload) will send a single message with the given payload
+        * await self._publisher.add_change(key, value) will add the key/value to the payload of the next cycle
+
+    If not:
+        * self._publisher.run_send_to_jeedom(payload) will send a single message with the given payload
+        * self._publisher.run_add_change(key, value) will add the key/value to the payload of the next cycle
+    """
     def __init__(self,
                  config: BaseConfig = BaseConfig(),
                  on_start_cb: Callable[..., Awaitable[None]] | None = None,
@@ -26,7 +59,7 @@ class BaseDaemon:
         self._config.parse()
         self.__listen_task: asyncio.Task[None] | None = None
         self._loop = None
-        self._jeedom_publisher: Publisher | None = None
+        self._publisher: Publisher | None = None
         self._logger = logging.getLogger(__name__)
         self.__log_level = Utils.convert_log_level(self._config.log_level)
         self.__on_start_cb = on_start_cb
@@ -73,15 +106,15 @@ class BaseDaemon:
         self._loop = asyncio.get_running_loop()
         self.__listen_task = Listener.create_listen_task(self._config.socket_host, self._config.socket_port, self.__on_socket_message)
 
-        async with Publisher(self._config.callback_url, self._config.api_key) as self._jeedom_publisher:
+        async with Publisher(self._config.callback_url, self._config.api_key) as self._publisher:
             # self._jeedom_publisher = Publisher(self._config.callback_url, self._config.api_key)
-            if not await self._jeedom_publisher.test_callback():
+            if not await self._publisher.test_callback():
                 return
 
             if self.__on_start_cb is not None and asyncio.iscoroutinefunction(self.__on_start_cb):
                 await self.__on_start_cb()
 
-            self._jeedom_publisher.create_send_task()
+            self._publisher.create_send_task()
 
             await self.__add_signal_handler()
             await asyncio.sleep(1) # allow  all tasks to start
