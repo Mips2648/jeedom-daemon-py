@@ -4,10 +4,10 @@
 name: pytest 3.9
 
 on:
-  # push:
-  #   branches: [ "main" ]
-  # pull_request:
-  #   branches: [ "main" ]
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
   workflow_call:
   workflow_dispatch:
 

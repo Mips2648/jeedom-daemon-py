@@ -61,10 +61,5 @@ class TestBaseConfig(unittest.TestCase):
         config.parse(['--clientId', 'hfldhfsd'])
         self.assertEqual(config.clientId, "hfldhfsd")
 
-    def test_failed(self):
-        self.assertEqual(1,2)
-
-
-
 if __name__ == '__main__':
     unittest.main()
