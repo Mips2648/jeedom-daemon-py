@@ -2,6 +2,8 @@
 
 from setuptools import setup, find_packages
 
+__version__ = "0.8.7"
+
 setup(
     # Needed to silence warnings (and to be a worthwhile package)
     name='jeedomdaemon',
@@ -13,7 +15,7 @@ setup(
     # Needed for dependencies
     install_requires=['aiohttp'],
     # *strongly* suggested for sharing
-    version='0.8.6',
+    version=__version__,
     # The license can be anything you like
     license='MIT',
     description='A base to implement Jeedom daemon in python',
