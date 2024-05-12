@@ -20,6 +20,8 @@ jobs:
     if: ${{ github.repository == 'Mips2648/jeedom-daemon-py'}}
     runs-on: ubuntu-latest
     concurrency: release
+    permissions:
+      contents: write
     name: Create Release
     steps:
       - name: Checkout code
