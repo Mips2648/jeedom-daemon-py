@@ -1,0 +1,61 @@
+name: Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  pytest_39:
+    uses: ./.github/workflows/pytest-3.9.yml
+
+  pytest_311:
+    uses: ./.github/workflows/pytest-3.11.yml
+
+  release-on-success:
+    needs: [pytest_39, pytest_311]
+    if: ${{ github.repository == 'Mips2648/jeedom-daemon-py'}}
+    runs-on: ubuntu-latest
+    concurrency: release
+    permissions:
+    #   id-token: write
+      contents: write
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - id: semantic-release
+      name: Python Semantic Release
+      uses: python-semantic-release/python-semantic-release@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+    outputs:
+      released: ${{ steps.semantic-release.outputs.released }}
+
+  publish:
+    needs: [release-on-success]
+    if: ${{ needs.release-on-success.outputs.released == 'true' }}
+    runs-on: ubuntu-latest
+    # Specifying a GitHub environment is optional, but strongly encouraged
+    environment: release
+    permissions:
+      # IMPORTANT: this permission is mandatory for trusted publishing
+      id-token: write
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install build
+    - name: Build package
+      run: python -m build
+    - name: Publish package
+      uses: pypa/gh-action-pypi-publish@81e9d935c883d0b210363ab89cf05f3894778450
