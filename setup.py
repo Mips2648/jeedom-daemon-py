@@ -13,7 +13,7 @@ setup(
     # Needed for dependencies
     install_requires=['aiohttp'],
     # *strongly* suggested for sharing
-    version='0.8.6',
+    version='0.8.7',
     # The license can be anything you like
     license='MIT',
     description='A base to implement Jeedom daemon in python',
