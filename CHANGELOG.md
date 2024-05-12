@@ -2,6 +2,17 @@
 
 
 
+## v0.8.8 (2024-05-12)
+
+### Fix
+
+* fix: publish ([`5052a6f`](https://github.com/Mips2648/jeedom-daemon-py/commit/5052a6f05b279297e2ff633e9aa1d55a7dca8b38))
+
+### Unknown
+
+* Merge branch &#39;main&#39; of https://github.com/Mips2648/jeedom-daemon-py ([`8c4d298`](https://github.com/Mips2648/jeedom-daemon-py/commit/8c4d2982207fc8f4ab8c672a93eac55f23b3482e))
+
+
 ## v0.8.7 (2024-05-12)
 
 ### Performance
