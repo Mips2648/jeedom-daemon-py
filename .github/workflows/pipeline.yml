@@ -8,10 +8,10 @@ on:
 
 jobs:
   pytest_39:
-    uses: ./.github/workflows/pytest-3.9.yml@main
+    uses: ./.github/workflows/pytest-3.9.yml
 
   pytest_311:
-    uses: ./.github/workflows/pytest-3.11.yml@main
+    uses: ./.github/workflows/pytest-3.11.yml
 
   release-on-success:
     needs: [pytest_39, pytest_311]
