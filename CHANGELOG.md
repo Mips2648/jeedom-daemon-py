@@ -6,20 +6,42 @@
 
 ### Fix
 
-* fix: publish ([`5052a6f`](https://github.com/Mips2648/jeedom-daemon-py/commit/5052a6f05b279297e2ff633e9aa1d55a7dca8b38))
-
-### Unknown
-
-* Merge branch &#39;main&#39; of https://github.com/Mips2648/jeedom-daemon-py ([`8c4d298`](https://github.com/Mips2648/jeedom-daemon-py/commit/8c4d2982207fc8f4ab8c672a93eac55f23b3482e))
+* fix: version number ([`1688857`](https://github.com/Mips2648/jeedom-daemon-py/commit/1688857ee02d93bca2fd48d71b52f08199fff009))
 
 
 ## v0.8.7 (2024-05-12)
+
+### Fix
+
+* fix: publish ([`5052a6f`](https://github.com/Mips2648/jeedom-daemon-py/commit/5052a6f05b279297e2ff633e9aa1d55a7dca8b38))
 
 ### Performance
 
 * perf: test ([`6a12142`](https://github.com/Mips2648/jeedom-daemon-py/commit/6a121420e2cef2a2eb30f0930e14df0e7e34b805))
 
 ### Unknown
+
+* update workflow ([`5aa7333`](https://github.com/Mips2648/jeedom-daemon-py/commit/5aa73330ab5a8c7723b6e0690a8a1815060d2a3f))
+
+* update upload ([`7c0190e`](https://github.com/Mips2648/jeedom-daemon-py/commit/7c0190e51190e50ca9f3b8f30cfe7a3d59d65ade))
+
+* fix version number ([`36546cb`](https://github.com/Mips2648/jeedom-daemon-py/commit/36546cb186a957f15a4d1f1ec117397d9b916570))
+
+* fix release ([`63bf82f`](https://github.com/Mips2648/jeedom-daemon-py/commit/63bf82f7a55878b307b7c3c76a179794112cc028))
+
+* fix ref ([`c8e18c0`](https://github.com/Mips2648/jeedom-daemon-py/commit/c8e18c0d931326a720b57c43c75f83d019e2a4d9))
+
+* fix permissions ([`326c20c`](https://github.com/Mips2648/jeedom-daemon-py/commit/326c20c66d1927c6e1576b4e6a50d5cd45da3c60))
+
+* update version ([`e40ead2`](https://github.com/Mips2648/jeedom-daemon-py/commit/e40ead24511e9066ed4cb87505c74888ce0c6a76))
+
+* update release ([`5cb24aa`](https://github.com/Mips2648/jeedom-daemon-py/commit/5cb24aacf8c262d7b8d70730271fb1ffe5837b02))
+
+* v0.8.7 ([`73648a9`](https://github.com/Mips2648/jeedom-daemon-py/commit/73648a96ef285f6f06b7b16480688cf6ab1b0a64))
+
+* test create release ([`3d3f069`](https://github.com/Mips2648/jeedom-daemon-py/commit/3d3f069889bce4112c3ab7a761f216eeee009e9e))
+
+* Merge branch &#39;main&#39; of https://github.com/Mips2648/jeedom-daemon-py ([`8c4d298`](https://github.com/Mips2648/jeedom-daemon-py/commit/8c4d2982207fc8f4ab8c672a93eac55f23b3482e))
 
 * test dir ([`c908589`](https://github.com/Mips2648/jeedom-daemon-py/commit/c9085898b30807153593fc479ed1c3481b86781e))
 
@@ -72,11 +94,26 @@
 
 * fix on_stop ([`854be8c`](https://github.com/Mips2648/jeedom-daemon-py/commit/854be8c43fd99255fd92ae846b5c24d54192ec4d))
 
+
+## v0.8.3 (2024-05-10)
+
+### Unknown
+
 * try fix ([`35fe432`](https://github.com/Mips2648/jeedom-daemon-py/commit/35fe4326a8b5e33343f0f4f7f6279995c0a2fa58))
+
+
+## v0.8.2 (2024-05-10)
+
+### Unknown
 
 * fix ([`0960496`](https://github.com/Mips2648/jeedom-daemon-py/commit/09604960d597384424b4d73f1a02a3862489d9d0))
 
 * on_stop_cb ([`0fa8ae9`](https://github.com/Mips2648/jeedom-daemon-py/commit/0fa8ae9194569217cdac4e29816f9d74452131f9))
+
+
+## v0.8.0 (2024-05-10)
+
+### Unknown
 
 * on_stop_cb awaitable ([`536e5de`](https://github.com/Mips2648/jeedom-daemon-py/commit/536e5de36e33989fdb6b7863ee486a548b8f316e))
 
