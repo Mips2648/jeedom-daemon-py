@@ -17,7 +17,7 @@ permissions:
 
 jobs:
   deploy:
-
+    if: github.repository == 'Mips2648/jeedom-daemon-py'
     runs-on: ubuntu-latest
     # Specifying a GitHub environment is optional, but strongly encouraged
     environment: release
