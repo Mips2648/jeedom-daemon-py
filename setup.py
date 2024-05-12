@@ -2,7 +2,7 @@
 
 from setuptools import setup, find_packages
 
-__version__ = "0.8.8"
+__version__ = "0.8.9"
 
 setup(
     # Needed to silence warnings (and to be a worthwhile package)

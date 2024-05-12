@@ -2,6 +2,19 @@
 
 
 
+## v0.8.9 (2024-05-12)
+
+### Fix
+
+* fix: add publish ([`3ed1bda`](https://github.com/Mips2648/jeedom-daemon-py/commit/3ed1bda12077afd2fb208ad8e8b43f6233d37140))
+
+### Unknown
+
+* Merge branch &#39;main&#39; of https://github.com/Mips2648/jeedom-daemon-py ([`7a52b63`](https://github.com/Mips2648/jeedom-daemon-py/commit/7a52b63b4266eb072529d027459bc78eadb492ad))
+
+* fix publish ([`630eee6`](https://github.com/Mips2648/jeedom-daemon-py/commit/630eee6b64989ef279b0218ab88815d5dcf4a58c))
+
+
 ## v0.8.8 (2024-05-12)
 
 ### Fix
@@ -94,26 +107,11 @@
 
 * fix on_stop ([`854be8c`](https://github.com/Mips2648/jeedom-daemon-py/commit/854be8c43fd99255fd92ae846b5c24d54192ec4d))
 
-
-## v0.8.3 (2024-05-10)
-
-### Unknown
-
 * try fix ([`35fe432`](https://github.com/Mips2648/jeedom-daemon-py/commit/35fe4326a8b5e33343f0f4f7f6279995c0a2fa58))
-
-
-## v0.8.2 (2024-05-10)
-
-### Unknown
 
 * fix ([`0960496`](https://github.com/Mips2648/jeedom-daemon-py/commit/09604960d597384424b4d73f1a02a3862489d9d0))
 
 * on_stop_cb ([`0fa8ae9`](https://github.com/Mips2648/jeedom-daemon-py/commit/0fa8ae9194569217cdac4e29816f9d74452131f9))
-
-
-## v0.8.0 (2024-05-10)
-
-### Unknown
 
 * on_stop_cb awaitable ([`536e5de`](https://github.com/Mips2648/jeedom-daemon-py/commit/536e5de36e33989fdb6b7863ee486a548b8f316e))
 
