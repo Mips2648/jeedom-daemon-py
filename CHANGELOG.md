@@ -1,5 +1,20 @@
 # CHANGELOG
 
+
+
+## v0.9.0 (2024-05-13)
+
+### :children_crossing:
+
+* :children_crossing: refacto publisher ([`8691df4`](https://github.com/Mips2648/jeedom-daemon-py/commit/8691df4bcadd184ef2f68fbab84d000847b347c0))
+
+### Other
+
+* Merge branch &#39;main&#39; of https://github.com/Mips2648/jeedom-daemon-py ([`30506a6`](https://github.com/Mips2648/jeedom-daemon-py/commit/30506a61b42ff79910cd9b7eeddc1f03af6ae7d1))
+
+* refacto call to publisher ([`c5f9085`](https://github.com/Mips2648/jeedom-daemon-py/commit/c5f9085bf469818c8ef874379e33e389ffdd3602))
+
+
 ## v0.8.10 (2024-05-12)
 
 ### :robot:
@@ -10,9 +25,10 @@
 
 * docs: test doc ([`f4d3df5`](https://github.com/Mips2648/jeedom-daemon-py/commit/f4d3df5ce2f3038b26014525358849f5bab986e1))
 
-* Merge branch &#39;main&#39; of <https://github.com/Mips2648/jeedom-daemon-py> ([`174c79d`](https://github.com/Mips2648/jeedom-daemon-py/commit/174c79dd778011dc58bd56900031b6030f05f3dd))
+* Merge branch &#39;main&#39; of https://github.com/Mips2648/jeedom-daemon-py ([`174c79d`](https://github.com/Mips2648/jeedom-daemon-py/commit/174c79dd778011dc58bd56900031b6030f05f3dd))
 
 * fix pipeline ([`f6b2bfd`](https://github.com/Mips2648/jeedom-daemon-py/commit/f6b2bfd0a1698c003049ca6ff2af048dfd68fed8))
+
 
 ## v0.8.9 (2024-05-12)
 
@@ -20,15 +36,17 @@
 
 * fix: add publish ([`3ed1bda`](https://github.com/Mips2648/jeedom-daemon-py/commit/3ed1bda12077afd2fb208ad8e8b43f6233d37140))
 
-* Merge branch &#39;main&#39; of <https://github.com/Mips2648/jeedom-daemon-py> ([`7a52b63`](https://github.com/Mips2648/jeedom-daemon-py/commit/7a52b63b4266eb072529d027459bc78eadb492ad))
+* Merge branch &#39;main&#39; of https://github.com/Mips2648/jeedom-daemon-py ([`7a52b63`](https://github.com/Mips2648/jeedom-daemon-py/commit/7a52b63b4266eb072529d027459bc78eadb492ad))
 
 * fix publish ([`630eee6`](https://github.com/Mips2648/jeedom-daemon-py/commit/630eee6b64989ef279b0218ab88815d5dcf4a58c))
+
 
 ## v0.8.8 (2024-05-12)
 
 ### Other
 
 * fix: version number ([`1688857`](https://github.com/Mips2648/jeedom-daemon-py/commit/1688857ee02d93bca2fd48d71b52f08199fff009))
+
 
 ## v0.8.7 (2024-05-12)
 
@@ -54,7 +72,7 @@
 
 * test create release ([`3d3f069`](https://github.com/Mips2648/jeedom-daemon-py/commit/3d3f069889bce4112c3ab7a761f216eeee009e9e))
 
-* Merge branch &#39;main&#39; of <https://github.com/Mips2648/jeedom-daemon-py> ([`8c4d298`](https://github.com/Mips2648/jeedom-daemon-py/commit/8c4d2982207fc8f4ab8c672a93eac55f23b3482e))
+* Merge branch &#39;main&#39; of https://github.com/Mips2648/jeedom-daemon-py ([`8c4d298`](https://github.com/Mips2648/jeedom-daemon-py/commit/8c4d2982207fc8f4ab8c672a93eac55f23b3482e))
 
 * fix: publish ([`5052a6f`](https://github.com/Mips2648/jeedom-daemon-py/commit/5052a6f05b279297e2ff633e9aa1d55a7dca8b38))
 
@@ -88,6 +106,7 @@
 
 * test semantic release ([`1b51abc`](https://github.com/Mips2648/jeedom-daemon-py/commit/1b51abc9f44da8d4be380d1883e46c9f98159ef4))
 
+
 ## v0.8.6 (2024-05-12)
 
 ### Other
@@ -96,11 +115,13 @@
 
 * update publish ([`400fdb0`](https://github.com/Mips2648/jeedom-daemon-py/commit/400fdb025d02dc0644617ce840c42a3e6cc8a278))
 
+
 ## v0.8.5 (2024-05-11)
 
 ### Other
 
 * add doc &amp; run_add_change ([`cbad311`](https://github.com/Mips2648/jeedom-daemon-py/commit/cbad31191b41255744e347a8d6d436ce51894fbd))
+
 
 ## v0.8.4 (2024-05-10)
 
@@ -116,6 +137,7 @@
 
 * on_stop_cb awaitable ([`536e5de`](https://github.com/Mips2648/jeedom-daemon-py/commit/536e5de36e33989fdb6b7863ee486a548b8f316e))
 
+
 ## v0.7.5 (2024-04-27)
 
 ### Other
@@ -123,6 +145,7 @@
 * add dunder getattr in config ([`a01f15a`](https://github.com/Mips2648/jeedom-daemon-py/commit/a01f15ad6ebe729de2eae8e5678be50a8687b1c8))
 
 * doc &amp; refacto ([`4f8fa12`](https://github.com/Mips2648/jeedom-daemon-py/commit/4f8fa12f94c27bd192414c75c3f03adba44e31ea))
+
 
 ## v0.7.4 (2024-04-26)
 
@@ -132,17 +155,20 @@
 
 * baseconfig by default ([`593d0e2`](https://github.com/Mips2648/jeedom-daemon-py/commit/593d0e26c571f0f2eafe46460ac809cc5abe95dc))
 
+
 ## v0.7.2 (2024-04-26)
 
 ### Other
 
 * add cycle ([`3342c37`](https://github.com/Mips2648/jeedom-daemon-py/commit/3342c3749cfa5ca08fa16eaaf85172d61d4a0184))
 
+
 ## v0.7.1 (2024-04-26)
 
 ### Other
 
 * adapt desc ([`050dc10`](https://github.com/Mips2648/jeedom-daemon-py/commit/050dc1046d40d78feb88acb0a71835d13d91dc22))
+
 
 ## v0.7.0 (2024-04-25)
 
@@ -169,77 +195,69 @@ Bump actions/checkout from 3 to 4 ([`a0f9ada`](https://github.com/Mips2648/jeedo
 * Update aiohttp requirement from ~=3.8.0 to ~=3.9.5
 
 Updates the requirements on [aiohttp](https://github.com/aio-libs/aiohttp) to permit the latest version.
-
-* [Release notes](https://github.com/aio-libs/aiohttp/releases)
-* [Changelog](https://github.com/aio-libs/aiohttp/blob/master/CHANGES.rst)
-* [Commits](https://github.com/aio-libs/aiohttp/compare/v3.8.0...v3.9.5)
+- [Release notes](https://github.com/aio-libs/aiohttp/releases)
+- [Changelog](https://github.com/aio-libs/aiohttp/blob/master/CHANGES.rst)
+- [Commits](https://github.com/aio-libs/aiohttp/compare/v3.8.0...v3.9.5)
 
 ---
 updated-dependencies:
-
-* dependency-name: aiohttp
+- dependency-name: aiohttp
   dependency-type: direct:production
 ...
 
-Signed-off-by: dependabot[bot] &lt;<support@github.com>&gt; ([`12d1f8b`](https://github.com/Mips2648/jeedom-daemon-py/commit/12d1f8bf5b417796bb600f879e1086055d54ae18))
+Signed-off-by: dependabot[bot] &lt;support@github.com&gt; ([`12d1f8b`](https://github.com/Mips2648/jeedom-daemon-py/commit/12d1f8bf5b417796bb600f879e1086055d54ae18))
 
 * Bump actions/checkout from 3 to 4
 
 Bumps [actions/checkout](https://github.com/actions/checkout) from 3 to 4.
-
-* [Release notes](https://github.com/actions/checkout/releases)
-* [Changelog](https://github.com/actions/checkout/blob/main/CHANGELOG.md)
-* [Commits](https://github.com/actions/checkout/compare/v3...v4)
+- [Release notes](https://github.com/actions/checkout/releases)
+- [Changelog](https://github.com/actions/checkout/blob/main/CHANGELOG.md)
+- [Commits](https://github.com/actions/checkout/compare/v3...v4)
 
 ---
 updated-dependencies:
-
-* dependency-name: actions/checkout
+- dependency-name: actions/checkout
   dependency-type: direct:production
   update-type: version-update:semver-major
 ...
 
-Signed-off-by: dependabot[bot] &lt;<support@github.com>&gt; ([`28c59cb`](https://github.com/Mips2648/jeedom-daemon-py/commit/28c59cb795b0e1efa15e01e7600ee264e1a90e83))
+Signed-off-by: dependabot[bot] &lt;support@github.com&gt; ([`28c59cb`](https://github.com/Mips2648/jeedom-daemon-py/commit/28c59cb795b0e1efa15e01e7600ee264e1a90e83))
 
 * Bump actions/setup-python from 3 to 5
 
 Bumps [actions/setup-python](https://github.com/actions/setup-python) from 3 to 5.
-
-* [Release notes](https://github.com/actions/setup-python/releases)
-* [Commits](https://github.com/actions/setup-python/compare/v3...v5)
+- [Release notes](https://github.com/actions/setup-python/releases)
+- [Commits](https://github.com/actions/setup-python/compare/v3...v5)
 
 ---
 updated-dependencies:
-
-* dependency-name: actions/setup-python
+- dependency-name: actions/setup-python
   dependency-type: direct:production
   update-type: version-update:semver-major
 ...
 
-Signed-off-by: dependabot[bot] &lt;<support@github.com>&gt; ([`b211474`](https://github.com/Mips2648/jeedom-daemon-py/commit/b21147426787a947037e42d9b0f09f681fd70397))
+Signed-off-by: dependabot[bot] &lt;support@github.com&gt; ([`b211474`](https://github.com/Mips2648/jeedom-daemon-py/commit/b21147426787a947037e42d9b0f09f681fd70397))
 
 * Bump pypa/gh-action-pypi-publish from 1.4.2 to 1.8.14
 
 Bumps [pypa/gh-action-pypi-publish](https://github.com/pypa/gh-action-pypi-publish) from 1.4.2 to 1.8.14.
-
-* [Release notes](https://github.com/pypa/gh-action-pypi-publish/releases)
-* [Commits](https://github.com/pypa/gh-action-pypi-publish/compare/27b31702a0e7fc50959f5ad993c78deac1bdfc29...81e9d935c883d0b210363ab89cf05f3894778450)
+- [Release notes](https://github.com/pypa/gh-action-pypi-publish/releases)
+- [Commits](https://github.com/pypa/gh-action-pypi-publish/compare/27b31702a0e7fc50959f5ad993c78deac1bdfc29...81e9d935c883d0b210363ab89cf05f3894778450)
 
 ---
 updated-dependencies:
-
-* dependency-name: pypa/gh-action-pypi-publish
+- dependency-name: pypa/gh-action-pypi-publish
   dependency-type: direct:production
   update-type: version-update:semver-minor
 ...
 
-Signed-off-by: dependabot[bot] &lt;<support@github.com>&gt; ([`0788586`](https://github.com/Mips2648/jeedom-daemon-py/commit/078858682f3ed4f14ab65744377f03e29f832406))
+Signed-off-by: dependabot[bot] &lt;support@github.com&gt; ([`0788586`](https://github.com/Mips2648/jeedom-daemon-py/commit/078858682f3ed4f14ab65744377f03e29f832406))
 
 * add dependabot ([`5741966`](https://github.com/Mips2648/jeedom-daemon-py/commit/57419664dbce6fefd978f667b18e235ae257cfea))
 
 * Create python-publish.yml ([`8781221`](https://github.com/Mips2648/jeedom-daemon-py/commit/8781221ae3b6b2f817b7907c966b67330e30dfd3))
 
-* Merge branch &#39;main&#39; of <https://github.com/Mips2648/jeedom-daemon-py> ([`f41d003`](https://github.com/Mips2648/jeedom-daemon-py/commit/f41d00375fdfb06193d4d2d9f62b9203c83088ee))
+* Merge branch &#39;main&#39; of https://github.com/Mips2648/jeedom-daemon-py ([`f41d003`](https://github.com/Mips2648/jeedom-daemon-py/commit/f41d00375fdfb06193d4d2d9f62b9203c83088ee))
 
 * add basic test on daemon ([`0330c43`](https://github.com/Mips2648/jeedom-daemon-py/commit/0330c43396c0a38b6329af57f5f45a704516773b))
 
@@ -259,7 +277,7 @@ Signed-off-by: dependabot[bot] &lt;<support@github.com>&gt; ([`0788586`](https:/
 
 * pylint ([`2493b67`](https://github.com/Mips2648/jeedom-daemon-py/commit/2493b670c68134bd1a7857cfbe785264a6d64905))
 
-* Merge branch &#39;main&#39; of <https://github.com/Mips2648/jeedom-daemon-py> ([`4116eab`](https://github.com/Mips2648/jeedom-daemon-py/commit/4116eab76c73b7d87ffadd432d960e5cdd32d7ce))
+* Merge branch &#39;main&#39; of https://github.com/Mips2648/jeedom-daemon-py ([`4116eab`](https://github.com/Mips2648/jeedom-daemon-py/commit/4116eab76c73b7d87ffadd432d960e5cdd32d7ce))
 
 * improve pylint ([`bf0ef9f`](https://github.com/Mips2648/jeedom-daemon-py/commit/bf0ef9f038dffa0ad9a04faaa8f3b4742bd15a11))
 
@@ -276,6 +294,8 @@ Signed-off-by: dependabot[bot] &lt;<support@github.com>&gt; ([`0788586`](https:/
 * add unittest ([`994b0e2`](https://github.com/Mips2648/jeedom-daemon-py/commit/994b0e25707afc4ed787a83becb0c3b36fd47db3))
 
 * Create python-package.yml ([`9e20402`](https://github.com/Mips2648/jeedom-daemon-py/commit/9e20402c366a6a819ed0235b7bcc9b6cef88b98a))
+
+* add run_send_to_jeedom ([`f8ec950`](https://github.com/Mips2648/jeedom-daemon-py/commit/f8ec9501bd9608ec0bd1a91f8695dd31e885b929))
 
 * bump version ([`f78658f`](https://github.com/Mips2648/jeedom-daemon-py/commit/f78658f1183d3210a13c27653a5eb608a409976a))
 
