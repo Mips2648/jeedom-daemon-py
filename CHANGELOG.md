@@ -2,6 +2,17 @@
 
 
 
+## v0.9.3 (2024-05-13)
+
+### :zap:
+
+* :zap: test ([`f108b26`](https://github.com/Mips2648/jeedom-daemon-py/commit/f108b263c9fecaf002721ff641702a39929c4ee7))
+
+### Other
+
+* Merge branch &#39;main&#39; of https://github.com/Mips2648/jeedom-daemon-py ([`53b879d`](https://github.com/Mips2648/jeedom-daemon-py/commit/53b879d122647c8056343b29b4f8a0f70e720901))
+
+
 ## v0.9.2 (2024-05-13)
 
 ### :zap:
