@@ -58,7 +58,7 @@ class BaseDaemon:
         self._config = config
         self._config.parse()
         self.__listen_task: asyncio.Task[None] | None = None
-        self._loop = None
+        self._loop: asyncio.AbstractEventLoop = None
         self._publisher: Publisher | None = None
         self._logger = logging.getLogger(__name__)
         self.__log_level = Utils.convert_log_level(self._config.log_level)
@@ -138,7 +138,7 @@ class BaseDaemon:
 
     def __ask_exit(self, sig):
         self._logger.info("Signal %i caught, exiting...", sig)
-        asyncio.run_coroutine_threadsafe(self.stop(), self._loop)
+        asyncio.create_task(self.stop())
 
     async def __add_signal_handler(self):
         self._loop.add_signal_handler(signal.SIGINT, functools.partial(self.__ask_exit, signal.SIGINT))
@@ -154,3 +154,29 @@ class BaseDaemon:
 
         except Exception as e: # pylint: disable=broad-exception-caught
             self._logger.error('Send command to demon error: %s', e)
+
+    async def send_to_jeedom(self, payload):
+        """
+        Will send the payload provided.
+        return true or false if successful
+        """
+        return await self._publisher.send_to_jeedom(payload)
+
+    def create_task_send_to_jeedom(self, payload):
+        """
+        Will create a task to with coroutine to send the payload provided.
+        """
+        self._loop.create_task(self._publisher.send_to_jeedom(payload))
+
+    async def add_change(self, key: str, value):
+        """
+        Add a key/value pair to the payload of the next cycle, several level can be provided at once by separating key with `::`
+        If a key already exists the value will be replaced by the newest
+        """
+        await self._publisher.add_change(key, value)
+
+    def create_task_add_change(self, key: str, value):
+        """
+        Will create a task to with coroutine to add a key/value pair to the payload of the next cycle.
+        """
+        self._loop.create_task(self._publisher.add_change(key, value))

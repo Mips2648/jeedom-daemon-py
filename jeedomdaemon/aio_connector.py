@@ -70,7 +70,10 @@ class Publisher():
         await self._jeedom_session.close()
 
     def create_send_task(self):
-        """ Helper function to create the send task"""
+        """ Helper function to create the send task.
+
+        A running loop in the current thread must exist
+        """
         return asyncio.create_task(self.__send_task())
 
     async def test_callback(self):
@@ -110,14 +113,6 @@ class Publisher():
         except asyncio.CancelledError:
             self._logger.info("Send async cancelled")
 
-    def run_send_to_jeedom(self, payload):
-        """
-        Will run coroutine to send the payload provided.
-        A running loop must exist
-        """
-        _loop = asyncio.get_running_loop()
-        return asyncio.run_coroutine_threadsafe(self.send_to_jeedom(payload), _loop)
-
     async def send_to_jeedom(self, payload):
         """
         Will send the payload provided.
@@ -129,14 +124,6 @@ class Publisher():
                 self._logger.error('Error on send request to jeedom, return %s-%s', resp.status, resp.reason)
                 return False
         return True
-
-    def run_add_change(self, key: str, value):
-        """
-        Will run coroutine add a key/value pair to the payload of the next cycle.
-        A running loop must exist
-        """
-        _loop = asyncio.get_running_loop()
-        return asyncio.run_coroutine_threadsafe(self.add_change(key, value), _loop)
 
     async def add_change(self, key: str, value):
         """
