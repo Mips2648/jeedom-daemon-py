@@ -9,9 +9,11 @@ on:
 
 jobs:
   pytest_39:
+    if: contains(github.event.head_commit.message, ':')
     uses: ./.github/workflows/pytest-3.9.yml
 
   pytest_311:
+    if: contains(github.event.head_commit.message, ':')
     uses: ./.github/workflows/pytest-3.11.yml
 
   release-on-success:
