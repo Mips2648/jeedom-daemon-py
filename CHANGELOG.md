@@ -2,6 +2,13 @@
 
 
 
+## v0.9.5 (2024-05-13)
+
+### :zap:
+
+* :zap: test ([`37d9355`](https://github.com/Mips2648/jeedom-daemon-py/commit/37d9355d1577e3ec863ac86e7e6f80f1977bec6f))
+
+
 ## v0.9.4 (2024-05-13)
 
 ### :zap:
