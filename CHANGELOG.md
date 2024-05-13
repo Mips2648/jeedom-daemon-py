@@ -1,12 +1,24 @@
 # CHANGELOG
 
+## v0.8.10 (2024-05-12)
+
+### :robot:
+
+* :robot: ([`e55537c`](https://github.com/Mips2648/jeedom-daemon-py/commit/e55537c342bca183758d83e43ecb8a21dc8228b4))
+
+### Other
+
+* docs: test doc ([`f4d3df5`](https://github.com/Mips2648/jeedom-daemon-py/commit/f4d3df5ce2f3038b26014525358849f5bab986e1))
+
+* Merge branch &#39;main&#39; of <https://github.com/Mips2648/jeedom-daemon-py> ([`174c79d`](https://github.com/Mips2648/jeedom-daemon-py/commit/174c79dd778011dc58bd56900031b6030f05f3dd))
+
+* fix pipeline ([`f6b2bfd`](https://github.com/Mips2648/jeedom-daemon-py/commit/f6b2bfd0a1698c003049ca6ff2af048dfd68fed8))
+
 ## v0.8.9 (2024-05-12)
 
-### Fix
+### Other
 
 * fix: add publish ([`3ed1bda`](https://github.com/Mips2648/jeedom-daemon-py/commit/3ed1bda12077afd2fb208ad8e8b43f6233d37140))
-
-### Unknown
 
 * Merge branch &#39;main&#39; of <https://github.com/Mips2648/jeedom-daemon-py> ([`7a52b63`](https://github.com/Mips2648/jeedom-daemon-py/commit/7a52b63b4266eb072529d027459bc78eadb492ad))
 
@@ -14,21 +26,13 @@
 
 ## v0.8.8 (2024-05-12)
 
-### Fix
+### Other
 
 * fix: version number ([`1688857`](https://github.com/Mips2648/jeedom-daemon-py/commit/1688857ee02d93bca2fd48d71b52f08199fff009))
 
 ## v0.8.7 (2024-05-12)
 
-### Fix
-
-* fix: publish ([`5052a6f`](https://github.com/Mips2648/jeedom-daemon-py/commit/5052a6f05b279297e2ff633e9aa1d55a7dca8b38))
-
-### Performance
-
-* perf: test ([`6a12142`](https://github.com/Mips2648/jeedom-daemon-py/commit/6a121420e2cef2a2eb30f0930e14df0e7e34b805))
-
-### Unknown
+### Other
 
 * update workflow ([`5aa7333`](https://github.com/Mips2648/jeedom-daemon-py/commit/5aa73330ab5a8c7723b6e0690a8a1815060d2a3f))
 
@@ -51,6 +55,10 @@
 * test create release ([`3d3f069`](https://github.com/Mips2648/jeedom-daemon-py/commit/3d3f069889bce4112c3ab7a761f216eeee009e9e))
 
 * Merge branch &#39;main&#39; of <https://github.com/Mips2648/jeedom-daemon-py> ([`8c4d298`](https://github.com/Mips2648/jeedom-daemon-py/commit/8c4d2982207fc8f4ab8c672a93eac55f23b3482e))
+
+* fix: publish ([`5052a6f`](https://github.com/Mips2648/jeedom-daemon-py/commit/5052a6f05b279297e2ff633e9aa1d55a7dca8b38))
+
+* perf: test ([`6a12142`](https://github.com/Mips2648/jeedom-daemon-py/commit/6a121420e2cef2a2eb30f0930e14df0e7e34b805))
 
 * test dir ([`c908589`](https://github.com/Mips2648/jeedom-daemon-py/commit/c9085898b30807153593fc479ed1c3481b86781e))
 
@@ -82,15 +90,21 @@
 
 ## v0.8.6 (2024-05-12)
 
-### Unknown
+### Other
 
 * test publish ([`4ca826c`](https://github.com/Mips2648/jeedom-daemon-py/commit/4ca826c95dc966ffbf3f502b96d7eb5ea008d88d))
 
 * update publish ([`400fdb0`](https://github.com/Mips2648/jeedom-daemon-py/commit/400fdb025d02dc0644617ce840c42a3e6cc8a278))
 
+## v0.8.5 (2024-05-11)
+
+### Other
+
+* add doc &amp; run_add_change ([`cbad311`](https://github.com/Mips2648/jeedom-daemon-py/commit/cbad31191b41255744e347a8d6d436ce51894fbd))
+
 ## v0.8.4 (2024-05-10)
 
-### Unknown
+### Other
 
 * fix on_stop ([`854be8c`](https://github.com/Mips2648/jeedom-daemon-py/commit/854be8c43fd99255fd92ae846b5c24d54192ec4d))
 
@@ -104,7 +118,7 @@
 
 ## v0.7.5 (2024-04-27)
 
-### Unknown
+### Other
 
 * add dunder getattr in config ([`a01f15a`](https://github.com/Mips2648/jeedom-daemon-py/commit/a01f15ad6ebe729de2eae8e5678be50a8687b1c8))
 
@@ -112,7 +126,7 @@
 
 ## v0.7.4 (2024-04-26)
 
-### Unknown
+### Other
 
 * bump version ([`2a81b19`](https://github.com/Mips2648/jeedom-daemon-py/commit/2a81b19ea7d08564d3b5c0e9424b9e8de3094dd2))
 
@@ -120,19 +134,19 @@
 
 ## v0.7.2 (2024-04-26)
 
-### Unknown
+### Other
 
 * add cycle ([`3342c37`](https://github.com/Mips2648/jeedom-daemon-py/commit/3342c3749cfa5ca08fa16eaaf85172d61d4a0184))
 
 ## v0.7.1 (2024-04-26)
 
-### Unknown
+### Other
 
 * adapt desc ([`050dc10`](https://github.com/Mips2648/jeedom-daemon-py/commit/050dc1046d40d78feb88acb0a71835d13d91dc22))
 
 ## v0.7.0 (2024-04-25)
 
-### Unknown
+### Other
 
 * add long_description ([`319e5e4`](https://github.com/Mips2648/jeedom-daemon-py/commit/319e5e41e6006347ee985c815961294d49e3c5d7))
 
