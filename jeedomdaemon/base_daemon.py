@@ -42,12 +42,12 @@ class BaseDaemon:
 
     To send feeback to Jeedom you have 4 possibilities depending your use case.
     If you are in an async method:
-        * await self._publisher.send_to_jeedom(payload) will send a single message with the given payload
-        * await self._publisher.add_change(key, value) will add the key/value to the payload of the next cycle
+        * await self.send_to_jeedom(payload) will send a single message with the given payload
+        * await self.add_change(key, value) will add the key/value to the payload of the next cycle
 
     If not:
-        * self._publisher.run_send_to_jeedom(payload) will send a single message with the given payload
-        * self._publisher.run_add_change(key, value) will add the key/value to the payload of the next cycle
+        * self.create_task_send_to_jeedom(payload) will send a single message with the given payload
+        * self.create_task_add_change(key, value) will add the key/value to the payload of the next cycle
     """
     def __init__(self,
                  config: BaseConfig = BaseConfig(),
