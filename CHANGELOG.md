@@ -2,6 +2,21 @@
 
 
 
+## v0.9.2 (2024-05-13)
+
+### :zap:
+
+* :zap: ([`023379c`](https://github.com/Mips2648/jeedom-daemon-py/commit/023379cb13d4e634b6e37bc1faff332f86e8e3a3))
+
+### Other
+
+* refacto workflow ([`661d52f`](https://github.com/Mips2648/jeedom-daemon-py/commit/661d52f17b8c2495a0f0999386a9fbb703fa8875))
+
+* skip run if not release to do ([`55ed0bb`](https://github.com/Mips2648/jeedom-daemon-py/commit/55ed0bbb29521a3685a432ee7d0e1dc195a5a79b))
+
+* test ([`cf04071`](https://github.com/Mips2648/jeedom-daemon-py/commit/cf04071b81a348f52ccd5b9860d85ead0c793441))
+
+
 ## v0.9.1 (2024-05-13)
 
 ### :wheelchair:
