@@ -2,6 +2,13 @@
 
 
 
+## v0.9.1 (2024-05-13)
+
+### :wheelchair:
+
+* :wheelchair: fix publish ([`e87e4f2`](https://github.com/Mips2648/jeedom-daemon-py/commit/e87e4f2865614bbf1923f149d1969471b6a91f27))
+
+
 ## v0.9.0 (2024-05-13)
 
 ### :children_crossing:
