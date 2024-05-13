@@ -15,7 +15,6 @@ on:
     paths: 'setup.py'
   workflow_run:
     workflows: ["semantic-release"]
-    branches: [ "main" ]
     types: [completed]
 
 permissions:
