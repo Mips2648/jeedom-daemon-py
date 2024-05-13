@@ -6,13 +6,17 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Upload Python Package
+name: publish
 
 on:
   release:
     types: [published]
   push:
     paths: 'setup.py'
+  workflow_run:
+    workflows: ["semantic-release"]
+    branches: [ "main" ]
+    types: [completed]
 
 permissions:
   contents: read
