@@ -2,6 +2,13 @@
 
 
 
+## v0.9.7 (2024-05-16)
+
+### :bug:
+
+* :bug: cycle was not taken from the config ([`98a56fa`](https://github.com/Mips2648/jeedom-daemon-py/commit/98a56faba2af9b48f24160942e1087cd8d8c1fea))
+
+
 ## v0.9.6 (2024-05-16)
 
 ### :green_apple:
