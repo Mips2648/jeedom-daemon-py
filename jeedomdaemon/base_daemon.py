@@ -106,8 +106,7 @@ class BaseDaemon:
         self._loop = asyncio.get_running_loop()
         self.__listen_task = Listener.create_listen_task(self._config.socket_host, self._config.socket_port, self.__on_socket_message)
 
-        async with Publisher(self._config.callback_url, self._config.api_key) as self._publisher:
-            # self._jeedom_publisher = Publisher(self._config.callback_url, self._config.api_key)
+        async with Publisher(self._config.callback_url, self._config.api_key, self._config.cycle) as self._publisher:
             if not await self._publisher.test_callback():
                 return
 
