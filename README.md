@@ -44,7 +44,7 @@ pip3 install jeedomdaemon
 ### Via requirements.txt
 
 ```txt
-jeedomdaemon~=0.7.5
+jeedomdaemon~=0.9.7
 ```
 
 ## Quick start
