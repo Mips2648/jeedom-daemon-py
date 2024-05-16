@@ -2,6 +2,13 @@
 
 
 
+## v0.9.6 (2024-05-16)
+
+### :green_apple:
+
+* :green_apple: add logs ([`2fea02a`](https://github.com/Mips2648/jeedom-daemon-py/commit/2fea02a963b59d4d193aead1ecb06175f28895d1))
+
+
 ## v0.9.5 (2024-05-13)
 
 ### :zap:
