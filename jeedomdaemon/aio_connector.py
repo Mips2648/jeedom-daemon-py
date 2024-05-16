@@ -89,7 +89,7 @@ class Publisher():
         return True
 
     async def __send_task(self):
-        self._logger.info("Send async started")
+        self._logger.info("Send async started with a cycle of %ss", self._cycle)
         try:
             last_send_on_error = False
             while True:
