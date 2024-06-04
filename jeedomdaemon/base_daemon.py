@@ -85,8 +85,11 @@ class BaseDaemon:
             Utils.write_pid(str(self._config.pid_filename))
 
             asyncio.run(self.__run())
-        except Exception as e: # pylint: disable=broad-exception-caught
-            self._logger.error('Fatal error: %s', e)
+        except Exception as ex: # pylint: disable=broad-exception-caught
+            exception_type, exception_object, exception_traceback = sys.exc_info()
+            filename = exception_traceback.tb_frame.f_code.co_filename
+            line_number = exception_traceback.tb_lineno
+            self._logger.error('Fatal error: %s(%s) in %s on line %s', ex, exception_type, filename, line_number)
         finally:
             self._logger.info("Shutdown")
             try:
