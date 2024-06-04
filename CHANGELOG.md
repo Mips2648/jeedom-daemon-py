@@ -2,6 +2,19 @@
 
 
 
+## v0.9.8 (2024-06-04)
+
+### :zap:
+
+* :zap: handle timeout error and add tests ([`a24e16a`](https://github.com/Mips2648/jeedom-daemon-py/commit/a24e16a3a607e08868f5235a3a3fa15caa7d792d))
+
+### Other
+
+* Merge branch &#39;main&#39; of https://github.com/Mips2648/jeedom-daemon-py ([`15352e3`](https://github.com/Mips2648/jeedom-daemon-py/commit/15352e3b1efe916944309d46de373af941d65c10))
+
+* update doc ([`0260e50`](https://github.com/Mips2648/jeedom-daemon-py/commit/0260e50d3d0bd5d9815987472e21c09b680b4b0b))
+
+
 ## v0.9.7 (2024-05-16)
 
 ### :bug:
