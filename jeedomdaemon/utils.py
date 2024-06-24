@@ -11,8 +11,8 @@ class Utils():
                   'warning': logging.WARNING,
                   'error': logging.ERROR,
                   'critical': logging.CRITICAL,
-                  'none': logging.NOTSET}
-        return LEVELS.get(level, logging.NOTSET)
+                  'none': logging.ERROR}
+        return LEVELS.get(level, logging.ERROR)
 
     @staticmethod
     def init_logger(level='error'):
