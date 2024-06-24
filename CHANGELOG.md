@@ -1,6 +1,14 @@
 # CHANGELOG
 
+## v0.10.0 (2024-06-24)
 
+### :egg:
+
+* :egg: if logevel is none or not set, fallback to error ([`d2228f2`](https://github.com/Mips2648/jeedom-daemon-py/commit/d2228f240463b5a946507f77fd82a4d986f24ced))
+
+### Other
+
+* Merge branch &#39;main&#39; of https://github.com/Mips2648/jeedom-daemon-py ([`aa7297e`](https://github.com/Mips2648/jeedom-daemon-py/commit/aa7297e137627e6dedfa7933abd29f4b97006de2))
 
 ## v0.9.8 (2024-06-04)
 
@@ -14,13 +22,11 @@
 
 * update doc ([`0260e50`](https://github.com/Mips2648/jeedom-daemon-py/commit/0260e50d3d0bd5d9815987472e21c09b680b4b0b))
 
-
 ## v0.9.7 (2024-05-16)
 
 ### :bug:
 
 * :bug: cycle was not taken from the config ([`98a56fa`](https://github.com/Mips2648/jeedom-daemon-py/commit/98a56faba2af9b48f24160942e1087cd8d8c1fea))
-
 
 ## v0.9.6 (2024-05-16)
 
@@ -28,20 +34,17 @@
 
 * :green_apple: add logs ([`2fea02a`](https://github.com/Mips2648/jeedom-daemon-py/commit/2fea02a963b59d4d193aead1ecb06175f28895d1))
 
-
 ## v0.9.5 (2024-05-13)
 
 ### :zap:
 
 * :zap: test ([`37d9355`](https://github.com/Mips2648/jeedom-daemon-py/commit/37d9355d1577e3ec863ac86e7e6f80f1977bec6f))
 
-
 ## v0.9.4 (2024-05-13)
 
 ### :zap:
 
 * :zap: test ([`8e0b941`](https://github.com/Mips2648/jeedom-daemon-py/commit/8e0b94103e2430db1c5f42dc7db9be799cbda7b7))
-
 
 ## v0.9.3 (2024-05-13)
 
@@ -52,7 +55,6 @@
 ### Other
 
 * Merge branch &#39;main&#39; of https://github.com/Mips2648/jeedom-daemon-py ([`53b879d`](https://github.com/Mips2648/jeedom-daemon-py/commit/53b879d122647c8056343b29b4f8a0f70e720901))
-
 
 ## v0.9.2 (2024-05-13)
 
@@ -68,13 +70,11 @@
 
 * test ([`cf04071`](https://github.com/Mips2648/jeedom-daemon-py/commit/cf04071b81a348f52ccd5b9860d85ead0c793441))
 
-
 ## v0.9.1 (2024-05-13)
 
 ### :wheelchair:
 
 * :wheelchair: fix publish ([`e87e4f2`](https://github.com/Mips2648/jeedom-daemon-py/commit/e87e4f2865614bbf1923f149d1969471b6a91f27))
-
 
 ## v0.9.0 (2024-05-13)
 
@@ -87,7 +87,6 @@
 * Merge branch &#39;main&#39; of https://github.com/Mips2648/jeedom-daemon-py ([`30506a6`](https://github.com/Mips2648/jeedom-daemon-py/commit/30506a61b42ff79910cd9b7eeddc1f03af6ae7d1))
 
 * refacto call to publisher ([`c5f9085`](https://github.com/Mips2648/jeedom-daemon-py/commit/c5f9085bf469818c8ef874379e33e389ffdd3602))
-
 
 ## v0.8.10 (2024-05-12)
 
@@ -103,7 +102,6 @@
 
 * fix pipeline ([`f6b2bfd`](https://github.com/Mips2648/jeedom-daemon-py/commit/f6b2bfd0a1698c003049ca6ff2af048dfd68fed8))
 
-
 ## v0.8.9 (2024-05-12)
 
 ### Other
@@ -114,13 +112,11 @@
 
 * fix publish ([`630eee6`](https://github.com/Mips2648/jeedom-daemon-py/commit/630eee6b64989ef279b0218ab88815d5dcf4a58c))
 
-
 ## v0.8.8 (2024-05-12)
 
 ### Other
 
 * fix: version number ([`1688857`](https://github.com/Mips2648/jeedom-daemon-py/commit/1688857ee02d93bca2fd48d71b52f08199fff009))
-
 
 ## v0.8.7 (2024-05-12)
 
@@ -180,7 +176,6 @@
 
 * test semantic release ([`1b51abc`](https://github.com/Mips2648/jeedom-daemon-py/commit/1b51abc9f44da8d4be380d1883e46c9f98159ef4))
 
-
 ## v0.8.6 (2024-05-12)
 
 ### Other
@@ -189,13 +184,11 @@
 
 * update publish ([`400fdb0`](https://github.com/Mips2648/jeedom-daemon-py/commit/400fdb025d02dc0644617ce840c42a3e6cc8a278))
 
-
 ## v0.8.5 (2024-05-11)
 
 ### Other
 
 * add doc &amp; run_add_change ([`cbad311`](https://github.com/Mips2648/jeedom-daemon-py/commit/cbad31191b41255744e347a8d6d436ce51894fbd))
-
 
 ## v0.8.4 (2024-05-10)
 
@@ -211,7 +204,6 @@
 
 * on_stop_cb awaitable ([`536e5de`](https://github.com/Mips2648/jeedom-daemon-py/commit/536e5de36e33989fdb6b7863ee486a548b8f316e))
 
-
 ## v0.7.5 (2024-04-27)
 
 ### Other
@@ -219,7 +211,6 @@
 * add dunder getattr in config ([`a01f15a`](https://github.com/Mips2648/jeedom-daemon-py/commit/a01f15ad6ebe729de2eae8e5678be50a8687b1c8))
 
 * doc &amp; refacto ([`4f8fa12`](https://github.com/Mips2648/jeedom-daemon-py/commit/4f8fa12f94c27bd192414c75c3f03adba44e31ea))
-
 
 ## v0.7.4 (2024-04-26)
 
@@ -229,20 +220,17 @@
 
 * baseconfig by default ([`593d0e2`](https://github.com/Mips2648/jeedom-daemon-py/commit/593d0e26c571f0f2eafe46460ac809cc5abe95dc))
 
-
 ## v0.7.2 (2024-04-26)
 
 ### Other
 
 * add cycle ([`3342c37`](https://github.com/Mips2648/jeedom-daemon-py/commit/3342c3749cfa5ca08fa16eaaf85172d61d4a0184))
 
-
 ## v0.7.1 (2024-04-26)
 
 ### Other
 
 * adapt desc ([`050dc10`](https://github.com/Mips2648/jeedom-daemon-py/commit/050dc1046d40d78feb88acb0a71835d13d91dc22))
-
 
 ## v0.7.0 (2024-04-25)
 
