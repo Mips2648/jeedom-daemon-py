@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v0.10.1 (2024-06-27)
+
+### :alien:
+
+* :alien: adapt logs to avoid logging sensitive data ([`e83995f`](https://github.com/Mips2648/jeedom-daemon-py/commit/e83995fa436b3c0c2acd31cd93b3b6fb8fece20b))
+
 ## v0.10.0 (2024-06-24)
 
 ### :egg:
