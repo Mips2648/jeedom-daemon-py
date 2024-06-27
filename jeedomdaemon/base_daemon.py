@@ -130,7 +130,7 @@ class BaseDaemon:
             await self.__on_stop_cb()
 
         tasks = [t for t in asyncio.all_tasks() if t is not asyncio.current_task()]
-        self._logger.info("Cancelling %i outstanding tasks", len(tasks))
+        self._logger.info("Cancelling %i tasks", len(tasks))
         for task in tasks:
             task.cancel()
         try:
@@ -153,6 +153,8 @@ class BaseDaemon:
         try:
             if self.__on_message_cb is not None:
                 await self.__on_message_cb(message)
+            else:
+                self._logger.warning('Message received on socket but no callback defined')
 
         except Exception as e: # pylint: disable=broad-exception-caught
             self._logger.error('Send command to demon error: %s', e)

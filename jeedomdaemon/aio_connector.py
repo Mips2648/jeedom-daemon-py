@@ -42,11 +42,11 @@ class Listener():
             self._logger.info("Listening cancelled")
 
     async def __handle_read(self, reader: asyncio.StreamReader, writer: asyncio.StreamWriter):
+        self._logger.debug("Received new message on socket")
         data = await reader.read()
         message = data.decode()
-        addr = writer.get_extra_info('peername')
-        self._logger.debug("Received %s from %s", message, addr)
-
+        # addr = writer.get_extra_info('peername')
+        # self._logger.debug("Received %s from %s", message, addr)
         writer.close()
         self._logger.debug("Close connection")
         await writer.wait_closed()
