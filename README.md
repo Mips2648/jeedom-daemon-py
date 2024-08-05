@@ -6,7 +6,7 @@
 
 ## Description
 
-This library provide everything needed to build a daemon for a plugin for Jeedom in python.
+This library provides everything needed to build a daemon for a plugin for Jeedom in python.
 It's possible to get a daemon skeleton by typing literally less than 5 lines of code.
 
 ## Requirements
@@ -76,8 +76,8 @@ class MyDaemon(BaseDaemon):
 
     async def on_start(self):
         """
-        This method will be called when your daemon start.
-        This is the place where you should create yours tasks, login to remote system, etc
+        This method will be called when your daemon starts.
+        This is the place where you should create your tasks, login to remote system, etc
         """
         # if you don't have specific action to do on start, do not create this method
         pass
@@ -92,7 +92,7 @@ class MyDaemon(BaseDaemon):
 
     async def on_stop(self):
         """
-        This callback will be called when daemon need to stop`
+        This callback will be called when the daemon needs to stop`
         You need to close your remote connexions and cancel background tasks if any here.
         """
         # if you don't have specific action to do on stop, do not create this method
@@ -107,11 +107,11 @@ Without additional work, your daemon will accept following argument when started
 
 * --loglevel - a string (Jeedom format) giving the log Level for the daemon
 * --sockethost - usually not needed, default is '127.0.0.1'
-* --socketport - port on which the daemon will open a tcp socket to listen for incomming message from your php code
+* --socketport - port on which the daemon will open a tcp socket to listen for incomming messages from your php code
 * --callback - callback url to use by your daemon to send data to your php code
-* --apikey - the apikey use to valid communication
+* --apikey - the api key to validate communication
 * --pid - the pid filename
-* --cycle - a float value giving at which frequency daemon should send request to your PHP code, by default every 0.5s (max)
+* --cycle - a float value giving at which frequency the daemon should send requests to your PHP code, by default every 0.5s (max)
 
 It will happen that you need to receive some additional values from Jeedom to be able to start your daemon, like a user & password to login somewhere. In that case create a child class like in this example and provide it during daemon initialisation:
 
@@ -141,4 +141,4 @@ class MyDaemon(BaseDaemon):
 
 ## What's next
 
-I suggest you to take a look at this [demo plugin](https://github.com/Mips2648/jeedom-aiodemo) which implement this library
+I suggest you to take a look at this [demo plugin](https://github.com/Mips2648/jeedom-aiodemo) which implements this library

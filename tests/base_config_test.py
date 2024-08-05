@@ -11,7 +11,7 @@ from jeedomdaemon.base_config import BaseConfig # pylint: disable=wrong-import-p
 class TestBaseConfig(unittest.TestCase):
     def test_base_config_creation(self):
         """
-        Test that it can create a basic config parser
+        Tests if it can create a basic config parser
         """
         config = BaseConfig()
         config.parse([])
@@ -19,7 +19,7 @@ class TestBaseConfig(unittest.TestCase):
 
     def test_base_config_parse(self):
         """
-        Test that it can parse config
+        Tests if it can parse config
         """
         config = BaseConfig()
         config.parse(['--loglevel', 'info', '--socketport', '42000', '--callback', 'http://localhost/path', '--apikey', 'cnysltyql', '--pid', '123'])
@@ -33,7 +33,7 @@ class TestBaseConfig(unittest.TestCase):
 
     def test_custom_config_parse_with_property(self):
         """
-        Test that it can parse config
+        Tests if it can parse config
         """
         class TestConfig(BaseConfig):
             def __init__(self):
@@ -50,7 +50,7 @@ class TestBaseConfig(unittest.TestCase):
 
     def test_custom_config_parse_without_property(self):
         """
-        Test that it can parse config
+        Tests if it can parse config
         """
         class TestConfig(BaseConfig):
             def __init__(self):
