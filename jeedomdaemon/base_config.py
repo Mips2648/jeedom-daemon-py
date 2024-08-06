@@ -6,9 +6,9 @@ import argparse
 from typing import Sequence
 
 class BaseConfig():
-    """Base config class, if you need custom configuration you can inherit from this class
+    """Base config class, if you need a custom configuration you can inherit from this class
 
-    This class support following argument, you don't need to declare them:
+    This class supports following arguments, you don't need to declare them:
     * --loglevel
     * --sockethost
     * --socketport
@@ -17,7 +17,7 @@ class BaseConfig():
     * --pid
     * --cycle
 
-    If you need additionals arguments then simply create a child class and them in your constructor, e.g.:
+    If you need additional arguments then simply create a child class and add them in your constructor, e.g.:
         ```
         class MyOwnConfig(BaseConfig):
             def __init__(self):
@@ -26,7 +26,7 @@ class BaseConfig():
                 self.add_argument("--user", type=str, default='john')
                 self.add_argument("--password", type=str)
         ```
-    The first arg is the expected argument from Jeedom, then it's interesting to specify the expected type and if a default value if needed
+    The first arg is the expected argument from Jeedom, then it's interesting to specify the expected type and a default value if needed
     """
     def __init__(self):
         self._args = None
@@ -40,7 +40,7 @@ class BaseConfig():
         self.add_argument("--cycle", help="cycle", type=float, default=0.5)
 
     def add_argument(self, *args, **kwargs):
-        """Add a, argurment to parse.
+        """Add an argurment to parse.
 
         e.g. from your child class:
             ```
@@ -52,7 +52,7 @@ class BaseConfig():
         return self.__parser.add_argument(*args, **kwargs)
 
     def parse(self, args: Sequence[str] | None = None):
-        """Actually parse de config, it will be done for you at daemon start."""
+        """Actually parses the config, it will be done for you at daemon start."""
         if self._args is None:
             self._args = self.__parser.parse_args(args)
 
@@ -61,35 +61,35 @@ class BaseConfig():
 
     @property
     def callback_url(self):
-        """Return the callback url to Jeedom."""
+        """Returns the callback url to Jeedom."""
         return str(self._args.callback)
 
     @property
     def socket_host(self):
-        """Return the daemon socket host."""
+        """Returns the daemon socket host."""
         return str(self._args.sockethost)
 
     @property
     def socket_port(self):
-        """Return the daemon socket port."""
+        """Returns the daemon socket port."""
         return int(self._args.socketport)
 
     @property
     def log_level(self):
-        """Return the log level."""
+        """Returns the log level."""
         return str(self._args.loglevel)
 
     @property
     def api_key(self):
-        """Return the api key."""
+        """Returns the api key."""
         return str(self._args.apikey)
 
     @property
     def pid_filename(self):
-        """Return the pid."""
+        """Returns the pid."""
         return str(self._args.pid)
 
     @property
     def cycle(self):
-        """Return the cycle."""
+        """Returns the cycle."""
         return float(self._args.cycle)
