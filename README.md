@@ -107,9 +107,9 @@ Without additional work, your daemon will accept following argument when started
 
 * --loglevel - a string (Jeedom format) giving the log Level for the daemon
 * --sockethost - usually not needed, default is '127.0.0.1'
-* --socketport - port on which the daemon will open a tcp socket to listen for incomming message from your php code
+* --socketport - port on which the daemon will open a tcp socket to listen for incoming message from your php code
 * --callback - callback url to use by your daemon to send data to your php code
-* --apikey - the apikey use to valid communication
+* --apikey - the API key use to valid communication
 * --pid - the pid filename
 * --cycle - a float value giving at which frequency daemon should send request to your PHP code, by default every 0.5s (max)
 

@@ -40,7 +40,7 @@ class BaseDaemon:
                 pass
         ```
 
-    To send feeback to Jeedom you have 4 possibilities depending your use case.
+    To send feedback to Jeedom you have 4 possibilities depending your use case.
     If you are in an async method:
         * await self.send_to_jeedom(payload) will send a single message with the given payload
         * await self.add_change(key, value) will add the key/value to the payload of the next cycle
@@ -114,7 +114,11 @@ class BaseDaemon:
                 return
 
             if self.__on_start_cb is not None and asyncio.iscoroutinefunction(self.__on_start_cb):
-                await self.__on_start_cb()
+                try:
+                    await self.__on_start_cb()
+                except BaseException as e: # pylint: disable=broad-exception-caught
+                    self._logger.warning("Exception occurred when calling on_start_cb: %s", e)
+                    return
 
             self._publisher.create_send_task()
 
@@ -127,7 +131,10 @@ class BaseDaemon:
         """ Stop your daemon if need be"""
 
         if self.__on_stop_cb is not None:
-            await self.__on_stop_cb()
+            try:
+                await self.__on_stop_cb()
+            except BaseException as e: # pylint: disable=broad-exception-caught
+                self._logger.warning("Exception occurred when calling on_stop_cb: %s", e)
 
         tasks = [t for t in asyncio.all_tasks() if t is not asyncio.current_task()]
         self._logger.info("Cancelling %i tasks", len(tasks))
@@ -136,7 +143,7 @@ class BaseDaemon:
         try:
             asyncio.gather(*tasks, return_exceptions=True)
         except BaseException as e: # pylint: disable=broad-exception-caught
-            self._logger.warning("Some exception occured during cancellation: %s", e)
+            self._logger.warning("Some exception occurred during cancellation: %s", e)
 
     def __ask_exit(self, sig):
         self._logger.info("Signal %i caught, exiting...", sig)
@@ -147,8 +154,8 @@ class BaseDaemon:
         self._loop.add_signal_handler(signal.SIGTERM, functools.partial(self.__ask_exit, signal.SIGTERM))
 
     async def __on_socket_message(self, message):
-        if message['apikey'] != self._config.api_key:
-            self._logger.error('Invalid apikey from socket : %s', message)
+        if 'apikey' not in message or message['apikey'] != self._config.api_key:
+            self._logger.error('Invalid or no apikey in message: %s', message)
             return
         try:
             if self.__on_message_cb is not None:

@@ -31,7 +31,7 @@ setup(
 
         'License :: OSI Approved :: MIT License',   # Again, pick a license
 
-        'Programming Language :: Python :: 3',      #Specify which pyhton versions that you want to support
+        'Programming Language :: Python :: 3',      #Specify which python versions that you want to support
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.11',
     ],
