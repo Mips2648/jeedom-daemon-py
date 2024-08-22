@@ -22,7 +22,7 @@ class TestBaseDaemon():
     @patch("builtins.open", new_callable=mock_open)
     def test_base_daemon_creation(self, dummy_file):
         """
-        Test that it can create a basic daemon
+        Tests if it can create a basic daemon
         """
         config = self._get_test_config()
         testdaemon = BaseDaemon(config)

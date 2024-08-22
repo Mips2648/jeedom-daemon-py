@@ -75,11 +75,11 @@ class BaseDaemon:
 
     @property
     def log_level(self):
-        """ Return the log level"""
+        """ Returns the log level"""
         return self.__log_level
 
     def run(self):
-        """ Run your daemon, this is the function you should call! """
+        """ Runs your daemon, this is the function you should call!"""
         try:
             self._logger.info('Starting daemon with log level: %s', self._config.log_level)
             Utils.write_pid(str(self._config.pid_filename))
@@ -128,7 +128,7 @@ class BaseDaemon:
             await self.__listen_task
 
     async def stop(self):
-        """ Stop your daemon if need be"""
+        """Stops your daemon if it needs to be"""
 
         if self.__on_stop_cb is not None:
             try:
@@ -169,25 +169,25 @@ class BaseDaemon:
     async def send_to_jeedom(self, payload):
         """
         Will send the payload provided.
-        return true or false if successful
+        returns true if successful or false otherwise
         """
         return await self._publisher.send_to_jeedom(payload)
 
     def create_task_send_to_jeedom(self, payload):
         """
-        Will create a task to with coroutine to send the payload provided.
+        Will create a task with coroutine to send the payload provided.
         """
         self._loop.create_task(self._publisher.send_to_jeedom(payload))
 
     async def add_change(self, key: str, value):
         """
-        Add a key/value pair to the payload of the next cycle, several level can be provided at once by separating key with `::`
+        Add a key/value pair to the payload of the next cycle, several levels can be provided at once by separating keys with `::`
         If a key already exists the value will be replaced by the newest
         """
         await self._publisher.add_change(key, value)
 
     def create_task_add_change(self, key: str, value):
         """
-        Will create a task to with coroutine to add a key/value pair to the payload of the next cycle.
+        Will create a task with coroutine to add a key/value pair to the payload of the next cycle.
         """
         self._loop.create_task(self._publisher.add_change(key, value))
