@@ -67,13 +67,14 @@ class TestBaseDaemon():
         assert len(mock_warning.call_args) == 2
         assert str(mock_warning.call_args[0][1].args[0]) == 'Test'
 
+    @pytest.mark.asyncio
     @mock.patch("builtins.open", new_callable=mock.mock_open)
-    def test_base_daemon_stop(self, mock_open_method):
+    async def test_base_daemon_stop(self, mock_open_method):
         """
         Tests if the daemon stops correctly
         """
         with mock.patch.object(self._test_daemon, 'stop', return_value=None) as mock_stop:
-            self._test_daemon.stop()
+            await self._test_daemon.stop()
             mock_stop.assert_called_once()
 
 class TestPublisher():
