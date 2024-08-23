@@ -36,11 +36,11 @@ class TestBaseDaemon():
         Tests if it can create a basic daemon
         """
         with pytest.raises(SystemExit) as pytest_wrapped_e:
-            # with mock.patch('jeedomdaemon.aio_connector.Publisher.test_callback') as mock_test_callback:
-            self._test_daemon.run()
+            with mock.patch('jeedomdaemon.aio_connector.Publisher.test_callback') as mock_test_callback:
+                self._test_daemon.run()
         assert pytest_wrapped_e.type == SystemExit
         assert pytest_wrapped_e.value.code == 0
-        # mock_test_callback.assert_called_once()
+        mock_test_callback.assert_called_once()
 
     @mock.patch("builtins.open", new_callable=mock.mock_open)
     def test_base_daemon_initialization(self, mock_open_method):
@@ -81,19 +81,19 @@ class TestPublisher():
 
     @pytest.mark.asyncio
     async def test_send_to_jeedom(self):
-        pub = Publisher('http://local/', 'cnysltyql')
-        with aioresponses() as mocked:
-            pattern = re.compile(r'^http://local/\?apikey=.*$')
-            mocked.get(pattern, status=200, body='test')
-            mocked.post(pattern, status=200, body='test')
-            resp = await pub.send_to_jeedom({})
-            assert resp == True
+        async with Publisher('http://local/', 'cnysltyql') as pub:
+            with aioresponses() as mocked:
+                pattern = re.compile(r'^http://local/\?apikey=.*$')
+                mocked.get(pattern, status=200, body='test')
+                mocked.post(pattern, status=200, body='test')
+                resp = await pub.send_to_jeedom({})
+                assert resp == True
 
     @pytest.mark.asyncio
     async def test_send_to_jeedom_timeout(self):
-        pub = Publisher('http://local/', 'cnysltyql')
-        with aioresponses() as mocked:
-            pattern = re.compile(r'^http://local/\?apikey=.*$')
-            mocked.post(pattern, status=200, timeout=True)
-            resp = await pub.send_to_jeedom({})
-            assert resp == False
+        async with Publisher('http://local/', 'cnysltyql') as pub:
+            with aioresponses() as mocked:
+                pattern = re.compile(r'^http://local/\?apikey=.*$')
+                mocked.post(pattern, status=200, timeout=True)
+                resp = await pub.send_to_jeedom({})
+                assert resp == False
