@@ -36,8 +36,8 @@ class TestBaseDaemon():
         Tests if it can create a basic daemon
         """
         with pytest.raises(SystemExit) as pytest_wrapped_e:
-            # with mock.patch('jeedomdaemon.aio_connector.Publisher.test_callback') as mock_test_callback:
-            self._test_daemon.run()
+            with mock.patch('jeedomdaemon.aio_connector.Publisher.test_callback') as mock_test_callback:
+                self._test_daemon.run()
         assert pytest_wrapped_e.type == SystemExit
         assert pytest_wrapped_e.value.code == 0
         # mock_test_callback.assert_called_once()
