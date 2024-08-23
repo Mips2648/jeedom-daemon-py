@@ -28,9 +28,7 @@ pip3 install jeedomdaemon
 ```json
 {
   "pre-install": {},
-  "apt": {
-    "python3-pip": {}
-  },
+  "apt": {},
   "pip3": {
     "jeedomdaemon": {}
   },
@@ -44,7 +42,7 @@ pip3 install jeedomdaemon
 ### Via requirements.txt
 
 ```txt
-jeedomdaemon~=0.9.7
+jeedomdaemon~=0.11.0
 ```
 
 ## Quick start
