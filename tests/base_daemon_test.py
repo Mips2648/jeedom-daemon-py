@@ -27,8 +27,8 @@ class TestBaseDaemon():
     def test_daemon(self):
         self._test_daemon = BaseDaemon(self._config)
 
-    # async def _on_start_cb(self):
-    #     raise Exception("Test")
+    async def _on_start_cb(self):
+        raise Exception("Test")
 
     @mock.patch("builtins.open", new_callable=mock.mock_open)
     def test_base_daemon_creation(self, mock_open_method):
