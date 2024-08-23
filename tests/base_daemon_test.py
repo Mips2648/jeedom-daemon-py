@@ -31,16 +31,16 @@ class TestBaseDaemon():
         raise Exception("Test")
 
     @mock.patch("builtins.open", new_callable=mock.mock_open)
-    def test_base_daemon_creation(self, mock_open_method):
+    @mock.patch("jeedomdaemon.aio_connector.Publisher.test_callback", new_callable=mock.AsyncMock)
+    def test_base_daemon_creation(self, mock_open_method, mock_test_callback):
         """
         Tests if it can create a basic daemon
         """
         with pytest.raises(SystemExit) as pytest_wrapped_e:
-            with mock.patch('jeedomdaemon.aio_connector.Publisher.test_callback') as mock_test_callback:
-                self._test_daemon.run()
+            self._test_daemon.run()
         assert pytest_wrapped_e.type == SystemExit
         assert pytest_wrapped_e.value.code == 0
-        # mock_test_callback.assert_called_once()
+        mock_test_callback.assert_called_once()
 
     @mock.patch("builtins.open", new_callable=mock.mock_open)
     def test_base_daemon_initialization(self, mock_open_method):
@@ -67,15 +67,15 @@ class TestBaseDaemon():
         assert len(mock_warning.call_args) == 2
         assert str(mock_warning.call_args[0][1].args[0]) == 'Test'
 
-    # @pytest.mark.asyncio
-    # @mock.patch("builtins.open", new_callable=mock.mock_open)
-    # async def test_base_daemon_stop(self, mock_open_method):
-    #     """
-    #     Tests if the daemon stops correctly
-    #     """
-    #     with mock.patch.object(self._test_daemon, 'stop', return_value=None) as mock_stop:
-    #         await self._test_daemon.stop()
-    #         mock_stop.assert_called_once()
+    @pytest.mark.asyncio
+    @mock.patch("builtins.open", new_callable=mock.mock_open)
+    async def test_base_daemon_stop(self, mock_open_method):
+        """
+        Tests if the daemon stops correctly
+        """
+        with mock.patch.object(self._test_daemon, 'stop', return_value=None) as mock_stop:
+            await self._test_daemon.stop()
+            mock_stop.assert_called_once()
 
 class TestPublisher():
 
