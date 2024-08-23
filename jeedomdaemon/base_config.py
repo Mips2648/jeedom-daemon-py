@@ -40,7 +40,7 @@ class BaseConfig():
         self.add_argument("--cycle", help="cycle", type=float, default=0.5)
 
     def add_argument(self, *args, **kwargs):
-        """Add an argurment to parse.
+        """Add an argument to parse.
 
         e.g. from your child class:
             ```

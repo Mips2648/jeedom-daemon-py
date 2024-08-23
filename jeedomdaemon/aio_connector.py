@@ -45,8 +45,6 @@ class Listener():
         self._logger.debug("Received new message on socket")
         data = await reader.read()
         message = data.decode()
-        # addr = writer.get_extra_info('peername')
-        # self._logger.debug("Received %s from %s", message, addr)
         writer.close()
         self._logger.debug("Close connection")
         await writer.wait_closed()
@@ -66,7 +64,7 @@ class Publisher():
     async def __aenter__(self):
         return self
 
-    async def __aexit__(self, *excinfo):
+    async def __aexit__(self, *_):
         await self._jeedom_session.close()
 
     def create_send_task(self):
@@ -77,7 +75,7 @@ class Publisher():
         return asyncio.create_task(self.__send_task())
 
     async def test_callback(self):
-        """test_callback will return true if the communication with Jeedom is sucessfull or false otherwise"""
+        """test_callback will return true if the communication with Jeedom is successful or false otherwise"""
         try:
             async with self._jeedom_session.get(self._callback_url + '?test=1&apikey=' + self._api_key) as resp:
                 if resp.status != 200:
