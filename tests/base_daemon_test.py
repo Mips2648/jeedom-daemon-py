@@ -36,11 +36,11 @@ class TestBaseDaemon():
         Tests if it can create a basic daemon
         """
         with pytest.raises(SystemExit) as pytest_wrapped_e:
-            with mock.patch('jeedomdaemon.aio_connector.Publisher.test_callback') as mock_test_callback:
-                self._test_daemon.run()
+            # with mock.patch('jeedomdaemon.aio_connector.Publisher.test_callback') as mock_test_callback:
+            self._test_daemon.run()
         assert pytest_wrapped_e.type == SystemExit
         assert pytest_wrapped_e.value.code == 0
-        mock_test_callback.assert_called_once()
+        # mock_test_callback.assert_called_once()
 
     @mock.patch("builtins.open", new_callable=mock.mock_open)
     def test_base_daemon_initialization(self, mock_open_method):
@@ -49,23 +49,23 @@ class TestBaseDaemon():
         """
         assert self._test_daemon._config == self._config
 
-    # @mock.patch("builtins.open", new_callable=mock.mock_open)
-    # def test_base_daemon_on_start_exception(self, mock_open_method):
-    #     """
-    #     Tests on start callback exception
-    #     """
-    #     testdaemon = BaseDaemon(self._config, on_start_cb=self._on_start_cb)
-    #     logger = logging.getLogger('jeedomdaemon.base_daemon')
-    #     with pytest.raises(SystemExit) as pytest_wrapped_e:
-    #         with mock.patch('jeedomdaemon.aio_connector.Publisher.test_callback') as mock_test_callback:
-    #             with mock.patch.object(logger, 'warning') as mock_warning:
-    #                 testdaemon.run()
-    #     assert pytest_wrapped_e.type == SystemExit
-    #     assert pytest_wrapped_e.value.code == 0
-    #     mock_test_callback.assert_called_once()
-    #     mock_warning.assert_called_once()
-    #     assert len(mock_warning.call_args) == 2
-    #     assert str(mock_warning.call_args[0][1].args[0]) == 'Test'
+    @mock.patch("builtins.open", new_callable=mock.mock_open)
+    def test_base_daemon_on_start_exception(self, mock_open_method):
+        """
+        Tests on start callback exception
+        """
+        testdaemon = BaseDaemon(self._config, on_start_cb=self._on_start_cb)
+        logger = logging.getLogger('jeedomdaemon.base_daemon')
+        with pytest.raises(SystemExit) as pytest_wrapped_e:
+            with mock.patch('jeedomdaemon.aio_connector.Publisher.test_callback') as mock_test_callback:
+                with mock.patch.object(logger, 'warning') as mock_warning:
+                    testdaemon.run()
+        assert pytest_wrapped_e.type == SystemExit
+        assert pytest_wrapped_e.value.code == 0
+        mock_test_callback.assert_called_once()
+        mock_warning.assert_called_once()
+        assert len(mock_warning.call_args) == 2
+        assert str(mock_warning.call_args[0][1].args[0]) == 'Test'
 
     # @pytest.mark.asyncio
     # @mock.patch("builtins.open", new_callable=mock.mock_open)
