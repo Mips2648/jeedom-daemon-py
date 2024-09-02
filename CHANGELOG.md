@@ -1,5 +1,51 @@
 # CHANGELOG
 
+## v0.11.1 (2024-09-02)
+
+### :zap:
+
+* :zap: fix aiohttp ([`9876d7b`](https://github.com/Mips2648/jeedom-daemon-py/commit/9876d7b75a51bd843e60adf107890f231abdf991))
+
+### Other
+
+* Merge pull request #10 from Mips2648/dependabot/pip/aiohttp-approx-eq-3.10.5
+
+Update aiohttp requirement from ~=3.10.4 to ~=3.10.5 ([`a179d76`](https://github.com/Mips2648/jeedom-daemon-py/commit/a179d7653e17f61b2db54168872543de24f220f3))
+
+* Update aiohttp requirement from ~=3.10.4 to ~=3.10.5
+
+Updates the requirements on [aiohttp](https://github.com/aio-libs/aiohttp) to permit the latest version.
+- [Release notes](https://github.com/aio-libs/aiohttp/releases)
+- [Changelog](https://github.com/aio-libs/aiohttp/blob/master/CHANGES.rst)
+- [Commits](https://github.com/aio-libs/aiohttp/compare/v3.10.4...v3.10.5)
+
+---
+updated-dependencies:
+- dependency-name: aiohttp
+  dependency-type: direct:production
+...
+
+Signed-off-by: dependabot[bot] &lt;support@github.com&gt; ([`1fd7312`](https://github.com/Mips2648/jeedom-daemon-py/commit/1fd7312f2b21677101f8a6fda287e32d56ba74a3))
+
+* Merge pull request #11 from Mips2648/dependabot/github_actions/pypa/gh-action-pypi-publish-1.10.0
+
+Bump pypa/gh-action-pypi-publish from 1.9.0 to 1.10.0 ([`ada7ac1`](https://github.com/Mips2648/jeedom-daemon-py/commit/ada7ac1ad95cd367176a4e9e5faa486282c0e615))
+
+* Bump pypa/gh-action-pypi-publish from 1.9.0 to 1.10.0
+
+Bumps [pypa/gh-action-pypi-publish](https://github.com/pypa/gh-action-pypi-publish) from 1.9.0 to 1.10.0.
+- [Release notes](https://github.com/pypa/gh-action-pypi-publish/releases)
+- [Commits](https://github.com/pypa/gh-action-pypi-publish/compare/ec4db0b4ddc65acdf4bff5fa45ac92d78b56bdf0...8a08d616893759ef8e1aa1f2785787c0b97e20d6)
+
+---
+updated-dependencies:
+- dependency-name: pypa/gh-action-pypi-publish
+  dependency-type: direct:production
+  update-type: version-update:semver-minor
+...
+
+Signed-off-by: dependabot[bot] &lt;support@github.com&gt; ([`c24583d`](https://github.com/Mips2648/jeedom-daemon-py/commit/c24583d5e60e27a7029c4bd965502920febe1e4b))
+
 ## v0.11.0 (2024-08-23)
 
 ### :children_crossing:
