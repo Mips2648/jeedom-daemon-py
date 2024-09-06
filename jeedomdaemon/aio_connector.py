@@ -105,6 +105,8 @@ class Publisher():
                             self._logger.debug("first time error during send: %s", e)
                             last_send_on_error = True
                         await self.__merge_dict(self.__changes,changes)
+                    except TypeError as e:
+                        self._logger.error("error during send: %s. No new try to send!", e)
                     else:
                         last_send_on_error = False
                 await asyncio.sleep(self._cycle)
