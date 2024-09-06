@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## v0.11.2 (2024-09-06)
+
+### :zap:
+
+* :zap: catch type error on send ([`429624a`](https://github.com/Mips2648/jeedom-daemon-py/commit/429624a29d3350b224f9b2c9c26f439fffcbb06e))
+
+### Other
+
+* :fix: catch type error on send ([`4bb4c5f`](https://github.com/Mips2648/jeedom-daemon-py/commit/4bb4c5f7d163b454b3b7be16686d2bf859e16f05))
+
+* Merge pull request #12 from MrWaloo/main
+
+:zap: [FIX] json_encode TypeError ([`84c0e36`](https://github.com/Mips2648/jeedom-daemon-py/commit/84c0e363ae0266b26bc237d48769050a70471ada))
+
+* [FIX] json_encode TypeError
+
+Object of type bytes is not JSON serializable ([`02cd6a0`](https://github.com/Mips2648/jeedom-daemon-py/commit/02cd6a019bcac9dc6a8124c7577fb81d3f29d76a))
+
 ## v0.11.1 (2024-09-02)
 
 ### :zap:
