@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v1.0.0 (2024-10-01)
+
+### :boom:
+
+* :boom: bump aiohttp &amp; release a v1 ([`e131e38`](https://github.com/Mips2648/jeedom-daemon-py/commit/e131e3852b22d9bf5a4b77fe63b53664b4d7c202))
+
 ## v0.11.2 (2024-09-06)
 
 ### :zap:
