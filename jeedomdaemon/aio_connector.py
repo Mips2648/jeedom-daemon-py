@@ -151,5 +151,5 @@ class Publisher():
             val1 = dic1.get(key) # returns None if v1 has no value for this key
             if isinstance(val1, Mapping) and isinstance(val2, Mapping):
                 await self.__merge_dict(val1, val2)
-            elif not bool(val1) or bool(val2) :
+            else:
                 dic1[key] = val2

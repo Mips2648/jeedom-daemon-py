@@ -164,7 +164,7 @@ class BaseDaemon:
                 self._logger.warning('Message received on socket but no callback defined')
 
         except Exception as e: # pylint: disable=broad-exception-caught
-            self._logger.error('Send command to demon error: %s', e)
+            self._logger.error('Send command to daemon error: %s', e)
 
     async def send_to_jeedom(self, payload):
         """
