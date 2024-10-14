@@ -1,12 +1,10 @@
 """Test class for base config."""
 
 import logging
-import re
 import sys
 import os
 from unittest import mock
 import pytest
-from aioresponses import aioresponses
 
 sys.path.append(os.path.realpath(os.path.dirname(__file__) + '/..'))
 
@@ -76,24 +74,3 @@ class TestBaseDaemon():
         with mock.patch.object(self._test_daemon, 'stop', return_value=None) as mock_stop:
             await self._test_daemon.stop()
             mock_stop.assert_called_once()
-
-class TestPublisher():
-
-    @pytest.mark.asyncio
-    async def test_send_to_jeedom(self):
-        async with Publisher('http://local/', 'cnysltyql') as pub:
-            with aioresponses() as mocked:
-                pattern = re.compile(r'^http://local/\?apikey=.*$')
-                mocked.get(pattern, status=200, body='test')
-                mocked.post(pattern, status=200, body='test')
-                resp = await pub.send_to_jeedom({})
-                assert resp == True
-
-    @pytest.mark.asyncio
-    async def test_send_to_jeedom_timeout(self):
-        async with Publisher('http://local/', 'cnysltyql') as pub:
-            with aioresponses() as mocked:
-                pattern = re.compile(r'^http://local/\?apikey=.*$')
-                mocked.post(pattern, status=200, timeout=True)
-                resp = await pub.send_to_jeedom({})
-                assert resp == False

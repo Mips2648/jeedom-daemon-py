@@ -1,8 +1,12 @@
 # pylint: disable=missing-module-docstring
 
+import pathlib
 from setuptools import setup, find_packages
 
 __version__ = "1.0.0"
+
+HERE = pathlib.Path(__file__).parent
+INSTALL_REQUIRES = (HERE / "requirements.txt").read_text().splitlines()
 
 setup(
     # Needed to silence warnings (and to be a worthwhile package)
@@ -13,7 +17,7 @@ setup(
     # Needed to actually package something
     packages=find_packages(),
     # Needed for dependencies
-    install_requires=['aiohttp'],
+    install_requires=INSTALL_REQUIRES,
     # *strongly* suggested for sharing
     version=__version__,
     # The license can be anything you like
