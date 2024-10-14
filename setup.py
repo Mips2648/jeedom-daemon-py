@@ -3,7 +3,7 @@
 import pathlib
 from setuptools import setup, find_packages
 
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 
 HERE = pathlib.Path(__file__).parent
 INSTALL_REQUIRES = (HERE / "requirements.txt").read_text().splitlines()
