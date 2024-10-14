@@ -1,6 +1,13 @@
 # CHANGELOG
 
 
+## v1.0.2 (2024-10-14)
+
+### :zap:
+
+* :zap: fix build ([`1d06fe6`](https://github.com/Mips2648/jeedom-daemon-py/commit/1d06fe6b5e57271057896c82c65d856e05a6ea95))
+
+
 ## v1.0.1 (2024-10-14)
 
 ### :zap:
