@@ -137,7 +137,7 @@ class Publisher():
     async def add_change(self, key: str, value):
         """
         Add a key/value pair to the payload of the next cycle, several levels can be provided at once by separating keys with `::`
-        If a key already exists the value will be replaced by the newest
+        If a key already exists the value will be replaced by the newest; None value will be ignored
         """
         if value is None:
             return
