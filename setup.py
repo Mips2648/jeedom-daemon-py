@@ -1,7 +1,7 @@
 # pylint: disable=missing-module-docstring
 from setuptools import setup, find_packages
 
-__version__ = "1.0.2"
+__version__ = "1.1.0"
 
 setup(
     # Needed to silence warnings (and to be a worthwhile package)
