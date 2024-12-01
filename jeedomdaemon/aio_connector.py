@@ -95,20 +95,20 @@ class Publisher():
         try:
             last_send_on_error = False
             while True:
-                if len(self.__changes)>0:
+                if len(self.__changes) > 0:
                     changes = self.__changes
                     self.__changes = {}
 
                     try:
                         if not await self.send_to_jeedom(changes):
-                            await self.__merge_dict(self.__changes,changes)
+                            await self.__merge_dict(self.__changes, changes)
                     except aiohttp.ClientError as e:
                         if last_send_on_error:
                             self._logger.error("error during send: %s", e)
                         else:
                             self._logger.debug("first time error during send: %s", e)
                             last_send_on_error = True
-                        await self.__merge_dict(self.__changes,changes)
+                        await self.__merge_dict(self.__changes, changes)
                     except TypeError as e:
                         self._logger.error("error during send: %s. No new try to send!", e)
                     else:
@@ -133,7 +133,6 @@ class Publisher():
             self._logger.warning('Timeout on send request to jeedom')
             return False
 
-
     async def add_change(self, key: str, value):
         """
         Add a key/value pair to the payload of the next cycle, several levels can be provided at once by separating keys with `::`
@@ -150,12 +149,12 @@ class Publisher():
                     k: changes
                 }
                 changes = tmp_changes
-            await self.__merge_dict(self.__changes,changes)
+            await self.__merge_dict(self.__changes, changes)
         else:
             self.__changes[key] = value
 
     async def __merge_dict(self, dic1: dict, dic2: dict):
-        for key,val2 in dic2.items():
+        for key, val2 in dic2.items():
             val1 = dic1.get(key) # returns None if v1 has no value for this key
             if isinstance(val1, Mapping) and isinstance(val2, Mapping):
                 await self.__merge_dict(val1, val2)

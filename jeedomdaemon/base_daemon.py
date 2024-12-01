@@ -103,7 +103,7 @@ class BaseDaemon:
             sys.exit(0)
 
     async def __run(self):
-        if self._config.socket_port < 1024 or self._config.socket_port>65535:
+        if self._config.socket_port < 1024 or self._config.socket_port > 65535:
             raise ValueError()
 
         self._loop = asyncio.get_running_loop()
