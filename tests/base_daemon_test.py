@@ -18,7 +18,13 @@ class TestBaseDaemon():
     @pytest.fixture(autouse=True)
     def daemon_config(self):
         self._config = BaseConfig()
-        self._config.parse(['--loglevel', 'info', '--socketport', '42000', '--callback', 'http://localhost/path', '--apikey', 'cnysltyql', '--pid', '/tmp/test_daemon'])
+        self._config.parse([
+            '--loglevel', 'info',
+            '--socketport', '42000',
+            '--callback', 'http://localhost/path',
+            '--apikey', 'cnysltyql',
+            '--pid', '/tmp/test_daemon'
+            ])
 
     # Arrange
     @pytest.fixture(autouse=True)

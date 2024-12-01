@@ -52,7 +52,12 @@ class Listener():
 
 
 class Publisher():
-    """This class allows to push information to Jeedom either immediately by calling function `send_to_jeedom` or in cycle by calling function `add_change`. For the "cycle" mode, a task must be created by calling `create_send_task` and awaited"""
+    """This class allows to push information to Jeedom.
+
+    It can be done either immediately by calling function `send_to_jeedom` or in cycle by calling function `add_change`.
+
+    For the "cycle" mode, a task must be created by calling `create_send_task`
+    """
     def __init__(self, callback_url: str, api_key: str, cycle: float = 0.5) -> None:
         self._jeedom_session = aiohttp.ClientSession()
         self._callback_url = callback_url

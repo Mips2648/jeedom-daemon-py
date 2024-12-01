@@ -20,16 +20,16 @@ setup(
     # We will also need a readme eventually (there will be a warning)
     long_description=open('README.md').read(),
     long_description_content_type="text/markdown",
-    keywords = ['JEEDOM', 'DAEMON', 'ASYNCIO'],
+    keywords=['JEEDOM', 'DAEMON', 'ASYNCIO'],
     classifiers=[
-        'Development Status :: 5 - Production/Stable',      # Chose either "3 - Alpha", "4 - Beta" or "5 - Production/Stable" as the current state of your package
+        'Development Status :: 5 - Production/Stable',  # Chose either "3 - Alpha", "4 - Beta" or "5 - Production/Stable" as the current state of your package
 
-        'Intended Audience :: Developers',      # Define that your audience are developers
+        'Intended Audience :: Developers',  # Define that your audience are developers
         'Topic :: Software Development :: Build Tools',
 
         'License :: OSI Approved :: MIT License',   # Again, pick a license
 
-        'Programming Language :: Python :: 3',      #Specify which python versions that you want to support
+        'Programming Language :: Python :: 3',  # Specify which python versions that you want to support
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.11',
     ],

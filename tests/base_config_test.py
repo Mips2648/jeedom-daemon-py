@@ -23,7 +23,13 @@ class TestBaseConfig(unittest.TestCase):
         Tests if it can parse config
         """
         config = BaseConfig()
-        config.parse(['--loglevel', 'info', '--socketport', '42000', '--callback', 'http://localhost/path', '--apikey', 'cnysltyql', '--pid', '123'])
+        config.parse([
+            '--loglevel', 'info',
+            '--socketport', '42000',
+            '--callback', 'http://localhost/path',
+            '--apikey', 'cnysltyql',
+            '--pid', '123'
+             ])
         self.assertEqual(config.log_level, "info")
         self.assertEqual(config.socket_host, "127.0.0.1")
         self.assertEqual(config.socket_port, 42000)
@@ -61,6 +67,7 @@ class TestBaseConfig(unittest.TestCase):
         config = TestConfig()
         config.parse(['--clientId', 'hfldhfsd'])
         self.assertEqual(config.clientId, "hfldhfsd")
+
 
 if __name__ == '__main__':
     unittest.main()
