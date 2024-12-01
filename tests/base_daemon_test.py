@@ -8,8 +8,9 @@ import pytest
 
 sys.path.append(os.path.realpath(os.path.dirname(__file__) + '/..'))
 
-from jeedomdaemon.base_daemon import BaseDaemon # pylint: disable=wrong-import-position
-from jeedomdaemon.base_config import BaseConfig # pylint: disable=wrong-import-position
+from jeedomdaemon.base_daemon import BaseDaemon  # noqa: E402
+from jeedomdaemon.base_config import BaseConfig  # noqa: E402
+
 
 class TestBaseDaemon():
 

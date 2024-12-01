@@ -14,6 +14,7 @@ from .utils import Utils
 from .aio_connector import Publisher, Listener
 from .base_config import BaseConfig
 
+
 class BaseDaemon:
     """Base daemon class for your daemon
 
@@ -85,7 +86,7 @@ class BaseDaemon:
             Utils.write_pid(str(self._config.pid_filename))
 
             asyncio.run(self.__run())
-        except Exception as ex: # pylint: disable=broad-exception-caught
+        except Exception as ex:
             exception_type, exception_object, exception_traceback = sys.exc_info()
             filename = exception_traceback.tb_frame.f_code.co_filename
             line_number = exception_traceback.tb_lineno
@@ -95,7 +96,7 @@ class BaseDaemon:
             try:
                 self._logger.debug("Removing PID file %s", self._config.pid_filename)
                 os.remove(self._config.pid_filename)
-            except: # pylint: disable=bare-except
+            except:  # noqa: E722
                 pass
 
             self._logger.debug("Exit 0")
@@ -116,14 +117,14 @@ class BaseDaemon:
             if self.__on_start_cb is not None and asyncio.iscoroutinefunction(self.__on_start_cb):
                 try:
                     await self.__on_start_cb()
-                except BaseException as e: # pylint: disable=broad-exception-caught
+                except BaseException as e:
                     self._logger.warning("Exception occurred when calling on_start_cb: %s", e)
                     return
 
             self._publisher.create_send_task()
 
             await self.__add_signal_handler()
-            await asyncio.sleep(1) # allow  all tasks to start
+            await asyncio.sleep(1)  # allow  all tasks to start
 
             await self.__listen_task
 
@@ -133,7 +134,7 @@ class BaseDaemon:
         if self.__on_stop_cb is not None:
             try:
                 await self.__on_stop_cb()
-            except BaseException as e: # pylint: disable=broad-exception-caught
+            except BaseException as e:
                 self._logger.warning("Exception occurred when calling on_stop_cb: %s", e)
 
         tasks = [t for t in asyncio.all_tasks() if t is not asyncio.current_task()]
@@ -142,7 +143,7 @@ class BaseDaemon:
             task.cancel()
         try:
             asyncio.gather(*tasks, return_exceptions=True)
-        except BaseException as e: # pylint: disable=broad-exception-caught
+        except BaseException as e:
             self._logger.warning("Some exception occurred during cancellation: %s", e)
 
     def __ask_exit(self, sig):
@@ -163,7 +164,7 @@ class BaseDaemon:
             else:
                 self._logger.warning('Message received on socket but no callback defined')
 
-        except Exception as e: # pylint: disable=broad-exception-caught
+        except Exception as e:
             self._logger.error('Send command to daemon error: %s', e)
 
     async def send_to_jeedom(self, payload):

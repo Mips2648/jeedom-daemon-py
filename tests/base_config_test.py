@@ -6,7 +6,8 @@ import unittest
 
 sys.path.append(os.path.realpath(os.path.dirname(__file__) + '/..'))
 
-from jeedomdaemon.base_config import BaseConfig # pylint: disable=wrong-import-position
+from jeedomdaemon.base_config import BaseConfig  # noqa: E402
+
 
 class TestBaseConfig(unittest.TestCase):
     def test_base_config_creation(self):

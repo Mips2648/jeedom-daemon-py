@@ -50,6 +50,7 @@ class Listener():
         await writer.wait_closed()
         await self._on_message_cb(json.loads(message))
 
+
 class Publisher():
     """This class allows to push information to Jeedom either immediately by calling function `send_to_jeedom` or in cycle by calling function `add_change`. For the "cycle" mode, a task must be created by calling `create_send_task` and awaited"""
     def __init__(self, callback_url: str, api_key: str, cycle: float = 0.5) -> None:
@@ -155,7 +156,7 @@ class Publisher():
 
     async def __merge_dict(self, dic1: dict, dic2: dict):
         for key, val2 in dic2.items():
-            val1 = dic1.get(key) # returns None if v1 has no value for this key
+            val1 = dic1.get(key)  # returns None if v1 has no value for this key
             if isinstance(val1, Mapping) and isinstance(val2, Mapping):
                 await self.__merge_dict(val1, val2)
             else:

@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 from typing import Sequence
 
+
 class BaseConfig():
     """Base config class, if you need a custom configuration you can inherit from this class
 
