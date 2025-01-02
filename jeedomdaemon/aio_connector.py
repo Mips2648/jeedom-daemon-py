@@ -1,5 +1,6 @@
 """Module providing Listener & Publisher class for your daemon."""
 
+import datetime
 import logging
 import json
 import asyncio
@@ -123,12 +124,36 @@ class Publisher():
         except asyncio.CancelledError:
             self._logger.info("Send async cancelled")
 
+    def __encoder(self, obj):
+        try:
+            if isinstance(obj, (datetime.date, datetime.datetime)):
+                return obj.isoformat()
+            if isinstance(obj, type(None)):
+                return None
+            return str(obj)
+        except Exception as e:
+            self._logger.error('Error encoding %s of type %s: %s', str(obj), type(obj), e)
+            raise TypeError('Payload is not JSON serializable and no custom encoder is available')
+
+    def __encode_payload(self, payload):
+        return json.loads(json.dumps(payload, default=lambda d: self.__encoder(d)))
+
+    def __is_serializable(self, x):
+        try:
+            json.dumps(x)
+            return True
+        except (TypeError, OverflowError):
+            return False
+
     async def send_to_jeedom(self, payload):
         """
         Will send the payload provided.
         return true if successful or false otherwise
         """
-        self._logger.debug('Send to jeedom: %s', payload)
+        self._logger.debug('Try sending to jeedom: %s', payload)
+        if not self.__is_serializable(payload):
+            self._logger.info('Payload is not JSON serializable. Use custom encoder.')
+            payload = self.__encode_payload(payload)
         try:
             async with self._jeedom_session.post(self._callback_url + '?apikey=' + self._api_key, json=payload) as resp:
                 if resp.status != 200:
