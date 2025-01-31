@@ -4,6 +4,7 @@ from aioresponses import aioresponses
 
 from jeedomdaemon.aio_connector import Publisher
 
+
 class TestPublisher():
 
     @pytest.mark.asyncio

@@ -50,6 +50,7 @@ class BaseDaemon:
         * self.create_task_send_to_jeedom(payload) will send a single message with the given payload
         * self.create_task_add_change(key, value) will add the key/value to the payload of the next cycle
     """
+
     def __init__(self,
                  config: BaseConfig = BaseConfig(),
                  on_start_cb: Callable[..., Awaitable[None]] | None = None,

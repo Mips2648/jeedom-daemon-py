@@ -29,7 +29,7 @@ class TestBaseConfig(unittest.TestCase):
             '--callback', 'http://localhost/path',
             '--apikey', 'cnysltyql',
             '--pid', '123'
-             ])
+        ])
         self.assertEqual(config.log_level, "info")
         self.assertEqual(config.socket_host, "127.0.0.1")
         self.assertEqual(config.socket_port, 42000)

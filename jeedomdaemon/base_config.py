@@ -29,6 +29,7 @@ class BaseConfig():
         ```
     The first arg is the expected argument from Jeedom, then it's interesting to specify the expected type and a default value if needed
     """
+
     def __init__(self):
         self._args = None
         self.__parser = argparse.ArgumentParser(description='Daemon for Jeedom plugin')

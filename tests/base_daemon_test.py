@@ -24,7 +24,7 @@ class TestBaseDaemon():
             '--callback', 'http://localhost/path',
             '--apikey', 'cnysltyql',
             '--pid', '/tmp/test_daemon'
-            ])
+        ])
 
     # Arrange
     @pytest.fixture(autouse=True)

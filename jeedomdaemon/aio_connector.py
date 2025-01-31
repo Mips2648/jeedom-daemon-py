@@ -59,6 +59,7 @@ class Publisher():
 
     For the "cycle" mode, a task must be created by calling `create_send_task`
     """
+
     def __init__(self, callback_url: str, api_key: str, cycle: float = 0.5) -> None:
         self._jeedom_session = aiohttp.ClientSession()
         self._callback_url = callback_url
