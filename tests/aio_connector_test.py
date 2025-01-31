@@ -15,7 +15,7 @@ class TestPublisher():
                 mocked.get(pattern, status=200, body='test')
                 mocked.post(pattern, status=200, body='test')
                 resp = await pub.send_to_jeedom({})
-                assert resp == True
+                assert resp is True
 
     @pytest.mark.asyncio
     async def test_send_to_jeedom_timeout(self):
@@ -24,7 +24,7 @@ class TestPublisher():
                 pattern = re.compile(r'^http://local/\?apikey=.*$')
                 mocked.post(pattern, status=200, timeout=True)
                 resp = await pub.send_to_jeedom({})
-                assert resp == False
+                assert resp is False
 
     @pytest.mark.asyncio
     async def test_add_change_basic(self):
