@@ -11,7 +11,9 @@ setup(
     # Needed to actually package something
     packages=find_packages(),
     # Needed for dependencies
-    install_requires=['aiohttp'],
+    install_requires=[
+        'aiohttp>=3.11.13'
+    ],
     # *strongly* suggested for sharing
     version=__version__,
     # The license can be anything you like

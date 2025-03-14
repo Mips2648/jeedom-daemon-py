@@ -1,3 +1,7 @@
+---
+version: 1.2.0
+---
+
 # jeedom-daemon-py
 
 [![pytest 3.9](https://github.com/Mips2648/jeedom-daemon-py/actions/workflows/pytest-3.9.yml/badge.svg)](https://github.com/Mips2648/jeedom-daemon-py/actions/workflows/pytest-3.9.yml)
@@ -42,7 +46,7 @@ pip3 install jeedomdaemon
 ### Via requirements.txt
 
 ```txt
-jeedomdaemon~=1.0.0
+jeedomdaemon~={{page.version}}
 ```
 
 ## Quick start

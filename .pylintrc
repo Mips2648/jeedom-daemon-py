@@ -1,7 +1,0 @@
-[MAIN]
-
-ignore-patterns=.*_test.py
-
-[FORMAT]
-
-max-line-length=255
