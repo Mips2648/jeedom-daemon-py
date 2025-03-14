@@ -37,6 +37,7 @@ packages = ["jeedomdaemon"]
 match = "(main|master)"
 prerelease_token = "rc"
 prerelease = false
+build_command = "python -m pip install build && python -m build"
 version_variables = [
     "jeedomdaemon/version.py:VERSION",
     "jeedomdaemon/__init__.py:__version__",
