@@ -23,6 +23,12 @@ jobs:
     concurrency: release
     permissions:
       contents: write
+      # IMPORTANT: this permission is mandatory for trusted publishing
+      id-token: write
+    # Specifying a GitHub environment is optional, but strongly encouraged
+    environment:
+      name: release
+      url: https://pypi.org/p/jeedomdaemon
 
     steps:
     - name: Checkout Repository on Release Branch
@@ -40,56 +46,14 @@ jobs:
       uses: python-semantic-release/python-semantic-release@v9.21.0
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-    outputs:
-      released: ${{ steps.semantic-release.outputs.released }}
 
-  release-build:
-    needs: release-on-tests-success
-    if: ${{ github.repository == 'Mips2648/jeedom-daemon-py' && needs.release-on-tests-success.outputs.released == 'true' }}
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+    - name: Publish | Upload package to PyPI
+      uses: pypa/gh-action-pypi-publish@v1.12.4
+      if: steps.semantic-release.outputs.released == 'true'
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
+    - name: Publish | Upload to GitHub Release Assets
+      uses: python-semantic-release/publish-action@v9.21.0
+      if: steps.semantic-release.outputs.released == 'true'
       with:
-        python-version: '3.11'
-
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install build
-
-    - name: Build package
-      run: python -m build
-
-    - name: Upload distributions
-      uses: actions/upload-artifact@v4
-      with:
-        name: release-dists
-        path: dist/
-
-  pypi-publish:
-    needs: release-build
-    runs-on: ubuntu-latest
-
-    permissions:
-      # IMPORTANT: this permission is mandatory for trusted publishing
-      id-token: write
-
-    # Specifying a GitHub environment is optional, but strongly encouraged
-    environment:
-      name: release
-      url: https://pypi.org/p/jeedomdaemon
-
-
-    steps:
-      - name: Download distributions
-        uses: actions/download-artifact@v4
-        with:
-          name: release-dists
-          path: dist/
-
-      - name: Publish release distributions to PyPI
-        uses: pypa/gh-action-pypi-publish@v1.12.4
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        tag: ${{ steps.semantic-release.outputs.tag }}
