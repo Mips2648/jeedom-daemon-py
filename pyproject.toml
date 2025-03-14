@@ -10,7 +10,7 @@ description = "A base to implement Jeedom daemon in python"
 readme = "README.md"
 requires-python = ">=3.9"
 keywords = ['JEEDOM', 'DAEMON', 'ASYNCIO']
-license = 'MIT'
+license = "MIT"
 classifiers = [
     'Development Status :: 5 - Production/Stable', # Chose either "3 - Alpha", "4 - Beta" or "5 - Production/Stable" as the current state of your package
 
