@@ -39,4 +39,3 @@ match = "(main|master)"
 prerelease_token = "rc"
 prerelease = false
 version_variables = ["jeedomdaemon/__init__.py:__version__"]
-commit_parser = "emoji"

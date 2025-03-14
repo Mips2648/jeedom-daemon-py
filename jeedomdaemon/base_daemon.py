@@ -10,6 +10,7 @@ import asyncio
 import functools
 from typing import Callable, Awaitable
 
+from . import __version__
 from .utils import Utils
 from .aio_connector import Publisher, Listener
 from .base_config import BaseConfig
@@ -83,7 +84,7 @@ class BaseDaemon:
     def run(self):
         """ Runs your daemon, this is the function you should call!"""
         try:
-            self._logger.info('Starting daemon with log level: %s', self._config.log_level)
+            self._logger.info('Starting daemon (lib version %s) with log level: %s', __version__, self._config.log_level)
             Utils.write_pid(str(self._config.pid_filename))
 
             asyncio.run(self.__run())
