@@ -20,7 +20,7 @@ classifiers = [
     'Programming Language :: Python :: 3.9',
     'Programming Language :: Python :: 3.11',
 ]
-dependencies = ["aiohttp~=3.11.13"]
+dependencies = ["aiohttp"]
 
 [project.urls]
 Homepage = "https://github.com/Mips2648/jeedom-daemon-py"
@@ -35,4 +35,7 @@ packages = ["jeedomdaemon"]
 match = "(main|master)"
 prerelease_token = "rc"
 prerelease = false
-version_variables = ["jeedomdaemon/version.py:VERSION"]
+version_variables = [
+    "jeedomdaemon/version.py:VERSION",
+    "jeedomdaemon/__init__.py:__version__",
+]
