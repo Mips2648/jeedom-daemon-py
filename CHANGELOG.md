@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v1.2.8 (2025-03-14)
+
+### Bug Fixes
+
+- Wrong tag number
+  ([`251d098`](https://github.com/Mips2648/jeedom-daemon-py/commit/251d098d0f75e6683dea658082c8a2b01eadc22f))
+
+
 ## v1.2.7 (2025-03-14)
 
 ### Bug Fixes
