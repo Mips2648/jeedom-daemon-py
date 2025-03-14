@@ -59,7 +59,7 @@ jobs:
     environment: release
 
       # OPTIONAL: uncomment and update to include your PyPI project URL in the deployment status:
-      # url: https://pypi.org/p/YOURPROJECT
+      # url: https://pypi.org/p/jeedomdaemon
 
     steps:
       - name: Retrieve release distributions
