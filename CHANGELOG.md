@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v1.2.4 (2025-03-14)
+
+### Bug Fixes
+
+- License
+  ([`6bf8c6d`](https://github.com/Mips2648/jeedom-daemon-py/commit/6bf8c6d6f93818adde2489f39ff06e884b4484e7))
+
+
 ## v1.2.3 (2025-03-14)
 
 ### Bug Fixes
