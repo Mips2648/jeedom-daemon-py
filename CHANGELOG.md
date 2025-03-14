@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v1.2.9 (2025-03-14)
+
+### Bug Fixes
+
+- Trigger wf
+  ([`dfff353`](https://github.com/Mips2648/jeedom-daemon-py/commit/dfff353c15baf3d11c7605f9174e863864e3bac2))
+
+
 ## v1.2.8 (2025-03-14)
 
 ### Bug Fixes
