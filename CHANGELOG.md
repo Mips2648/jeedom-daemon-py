@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v1.2.2 (2025-03-14)
+
+### Bug Fixes
+
+- Publish trigger
+  ([`9eff9a0`](https://github.com/Mips2648/jeedom-daemon-py/commit/9eff9a0ed937e588869c4d7259d9f467fbcb7d63))
+
+
 ## v1.2.1 (2025-03-14)
 
 ### Bug Fixes
