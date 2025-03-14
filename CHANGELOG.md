@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v1.2.3 (2025-03-14)
+
+### Bug Fixes
+
+- Test full
+  ([`317b242`](https://github.com/Mips2648/jeedom-daemon-py/commit/317b242bd08fe9c8cfcd5cf76455ed28933a2e40))
+
+
 ## v1.2.2 (2025-03-14)
 
 ### Bug Fixes
