@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v1.2.6 (2025-03-14)
+
+### Bug Fixes
+
+- Remove license property
+  ([`45f8cc5`](https://github.com/Mips2648/jeedom-daemon-py/commit/45f8cc510ef415bf7ba1894ca4426193252e54e0))
+
+
 ## v1.2.5 (2025-03-14)
 
 ### Bug Fixes
