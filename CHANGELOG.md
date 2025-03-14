@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v1.2.7 (2025-03-14)
+
+### Bug Fixes
+
+- Adapt setuptool version
+  ([`06c8ba2`](https://github.com/Mips2648/jeedom-daemon-py/commit/06c8ba263fc09b90b2643450a74744a49d6b88ed))
+
+
 ## v1.2.6 (2025-03-14)
 
 ### Bug Fixes
