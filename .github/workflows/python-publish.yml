@@ -12,7 +12,7 @@ on:
   release:
     types: [published]
   push:
-    paths: 'setup.py'
+    paths: 'jeedomdaemon/__init__.py'
   workflow_dispatch:
 
 permissions:

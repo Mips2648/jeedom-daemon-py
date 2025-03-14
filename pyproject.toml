@@ -2,9 +2,41 @@
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
+[project]
+name = "jeedomdaemon"
+dynamic = ["version"]
+authors = [{ name = "Mips" }]
+description = "A base to implement Jeedom daemon in python"
+readme = "README.md"
+requires-python = ">=3.9"
+keywords = ['JEEDOM', 'DAEMON', 'ASYNCIO']
+license = 'MIT'
+classifiers = [
+    'Development Status :: 5 - Production/Stable', # Chose either "3 - Alpha", "4 - Beta" or "5 - Production/Stable" as the current state of your package
+
+    'Intended Audience :: Developers',              # Define that your audience are developers
+    'Topic :: Software Development :: Build Tools',
+
+    'License :: OSI Approved :: MIT License', # Again, pick a license
+
+    'Programming Language :: Python :: 3',    # Specify which python versions that you want to support
+    'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.11',
+]
+dependencies = ["aiohttp~=3.11.13"]
+
+[project.urls]
+Homepage = "https://github.com/Mips2648/jeedom-daemon-py"
+
+[tool.setuptools.dynamic]
+version = { attr = "jeedomdaemon.__version__" }
+
+[tool.setuptools]
+packages = ["jeedomdaemon"]
+
 [tool.semantic_release]
 match = "(main|master)"
 prerelease_token = "rc"
 prerelease = false
-version_variables = ["setup.py:__version__"]
+version_variables = ["jeedomdaemon/__init__.py:__version__"]
 commit_parser = "emoji"
