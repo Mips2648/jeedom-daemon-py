@@ -6,7 +6,7 @@ import os
 from unittest import mock
 import pytest
 
-sys.path.append(os.path.realpath(os.path.dirname(__file__) + '/..'))
+# sys.path.append(os.path.realpath(os.path.dirname(__file__) + '/..'))
 
 from jeedomdaemon.base_daemon import BaseDaemon  # noqa: E402
 from jeedomdaemon.base_config import BaseConfig  # noqa: E402

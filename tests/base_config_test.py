@@ -4,7 +4,7 @@ import sys
 import os
 import unittest
 
-sys.path.append(os.path.realpath(os.path.dirname(__file__) + '/..'))
+# sys.path.append(os.path.realpath(os.path.dirname(__file__) + '/..'))
 
 from jeedomdaemon.base_config import BaseConfig  # noqa: E402
 
