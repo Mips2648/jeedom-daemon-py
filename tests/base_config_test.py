@@ -1,12 +1,8 @@
 """Test class for base config."""
 
-import sys
-import os
 import unittest
 
-# sys.path.append(os.path.realpath(os.path.dirname(__file__) + '/..'))
-
-from jeedomdaemon.base_config import BaseConfig  # noqa: E402
+from jeedomdaemon.base_config import BaseConfig
 
 
 class TestBaseConfig(unittest.TestCase):
