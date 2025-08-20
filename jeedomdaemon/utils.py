@@ -1,3 +1,8 @@
+"""Utility functions for Jeedom daemon development.
+
+This module provides helper functions for logging and PID file management.
+"""
+
 import logging
 import os
 
@@ -22,6 +27,11 @@ class Utils():
 
     @staticmethod
     def write_pid(path):
+        """Write the current process PID to the specified file.
+
+        Args:
+            path (str): The file path where the PID should be written.
+        """
         pid = str(os.getpid())
         logging.debug("Writing PID %s to %s", pid, path)
         open(path, 'w').write("%s\n" % pid)

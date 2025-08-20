@@ -1,4 +1,8 @@
-"""Module providing Listener & Publisher class for your daemon."""
+"""Module providing Listener and Publisher classes for your daemon.
+
+This module defines asynchronous classes for socket communication and HTTP publishing
+to interact with Jeedom.
+"""
 
 import datetime
 import logging

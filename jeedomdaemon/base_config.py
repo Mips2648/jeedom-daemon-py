@@ -1,4 +1,8 @@
-"""Module providing a base class to parse config of your daemon."""
+"""Module providing a base class to parse the configuration of your daemon.
+
+This module defines the BaseConfig class, which can be extended to add custom
+configuration options for your Jeedom daemon.
+"""
 
 from __future__ import annotations
 
@@ -54,6 +58,11 @@ class BaseConfig():
         return self.__parser.add_argument(*args, **kwargs)
 
     def parse(self, args: Sequence[str] | None = None):
+        """Parse the provided command-line arguments.
+
+        Args:
+            args (Sequence[str] | None): List of arguments to parse. If None, parses sys.argv.
+        """
         """Actually parses the config, it will be done for you at daemon start."""
         if self._args is None:
             self._args = self.__parser.parse_args(args)

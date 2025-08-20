@@ -1,4 +1,8 @@
-"""Module providing a base class for your daemon."""
+"""Module providing a base class for your daemon.
+
+This module defines the BaseDaemon class, which should be subclassed to implement
+custom Jeedom daemons. Override the on_start, on_message, and on_stop callbacks as needed.
+"""
 
 from __future__ import annotations
 
@@ -82,7 +86,7 @@ class BaseDaemon:
         return self.__log_level
 
     def run(self):
-        """ Runs your daemon, this is the function you should call!"""
+        """Start the main loop of the daemon."""
         try:
             self._logger.info('Starting daemon (lib version %s) with log level: %s', VERSION, self._config.log_level)
             Utils.write_pid(str(self._config.pid_filename))
@@ -131,7 +135,7 @@ class BaseDaemon:
             await self.__listen_task
 
     async def stop(self):
-        """Stops your daemon if it needs to be"""
+        """Stop the daemon and cancel all running tasks."""
 
         if self.__on_stop_cb is not None:
             try:
@@ -177,20 +181,27 @@ class BaseDaemon:
         return await self._publisher.send_to_jeedom(payload)
 
     def create_task_send_to_jeedom(self, payload):
-        """
-        Will create a task with coroutine to send the payload provided.
+        """Create a task to send the given payload to Jeedom asynchronously.
+
+        Args:
+            payload (dict): The data to send to Jeedom.
         """
         self._loop.create_task(self._publisher.send_to_jeedom(payload))
 
     async def add_change(self, key: str, value):
-        """
-        Add a key/value pair to the payload of the next cycle, several levels can be provided at once by separating keys with `::`
-        If a key already exists the value will be replaced by the newest
+        """Add a key/value pair to the payload of the next cycle.
+
+        Args:
+            key (str): The key to add or update.
+            value: The value to associate with the key.
         """
         await self._publisher.add_change(key, value)
 
     def create_task_add_change(self, key: str, value):
-        """
-        Will create a task with coroutine to add a key/value pair to the payload of the next cycle.
+        """Create a task to add a key/value pair to the payload of the next cycle asynchronously.
+
+        Args:
+            key (str): The key to add or update.
+            value: The value to associate with the key.
         """
         self._loop.create_task(self._publisher.add_change(key, value))
