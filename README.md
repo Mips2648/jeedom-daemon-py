@@ -50,7 +50,7 @@ jeedomdaemon~=1.2.0
 Create a file `myDaemon.py` and copy/past the 4 lines of code below and that's it, nothing else to do, your daemon is good to start:
 
 ```python
-from jeedomdaemon.base_daemon import BaseDaemon
+from jeedomdaemon import BaseDaemon
 
 class MyDaemon(BaseDaemon):
     pass
@@ -63,7 +63,7 @@ Of course, this does nothing so far except starting, accepting incoming requests
 So let's add few lines in your daemon class:
 
 ```python
-from jeedomdaemon.base_daemon import BaseDaemon
+from jeedomdaemon import BaseDaemon
 
 class MyDaemon(BaseDaemon):
     def __init__(self) -> None:
@@ -114,8 +114,8 @@ Without additional work, your daemon will accept following argument when started
 It will happen that you need to receive some additional values from Jeedom to be able to start your daemon, like a user & password to login somewhere. In that case create a child class like in this example and provide it during daemon initialisation:
 
 ```python
-from jeedomdaemon.base_daemon import BaseDaemon
-from jeedomdaemon.base_config import BaseConfig
+from jeedomdaemon import BaseDaemon
+from jeedomdaemon import BaseConfig
 
 class DemoConfig(BaseConfig):
     """This is where you declare your custom argument/configuration
