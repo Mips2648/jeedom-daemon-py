@@ -110,8 +110,8 @@ class BaseDaemon:
             sys.exit(0)
 
     async def __run(self):
-        if self._config.socket_port < 1024 or self._config.socket_port > 65535:
-            raise ValueError()
+        if not (1024 <= self._config.socket_port <= 65535):
+            raise ValueError(f"Invalid socket port: {self._config.socket_port}. Port must be between 1024 and 65535 (inclusive)")
 
         self._loop = asyncio.get_running_loop()
         self.__listen_task = Listener.create_listen_task(self._config.socket_host, self._config.socket_port, self.__on_socket_message)
