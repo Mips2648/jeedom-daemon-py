@@ -32,7 +32,7 @@ jobs:
 
     steps:
     - name: Checkout Repository on Release Branch
-      uses: actions/checkout@v6
+      uses: actions/checkout@v7
       with:
         ref: ${{ github.ref_name }}
         fetch-depth: 0
@@ -43,16 +43,16 @@ jobs:
 
     - name: Python Semantic Release
       id: semantic-release
-      uses: python-semantic-release/python-semantic-release@v10.5.3
+      uses: python-semantic-release/python-semantic-release@v10.6.1
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Publish | Upload package to PyPI
-      uses: pypa/gh-action-pypi-publish@v1.14.0
+      uses: pypa/gh-action-pypi-publish@v1.14.2
       if: steps.semantic-release.outputs.released == 'true'
 
     - name: Publish | Upload to GitHub Release Assets
-      uses: python-semantic-release/publish-action@v10.5.3
+      uses: python-semantic-release/publish-action@v10.6.1
       if: steps.semantic-release.outputs.released == 'true'
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
