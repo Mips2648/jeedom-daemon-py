@@ -124,10 +124,10 @@ class Publisher():
                 batch = self._build_batch()
                 if len(batch) > 0:
                     try:
+                        self._logger.info("Sending batch of %d changes on %d total pending", len(batch), len(self.__changes))
                         if not await self.send_to_jeedom(self.__build_nested(batch)):
                             self._requeue(batch)
                         elif len(self.__changes) > 0:
-                            self._logger.info("Draining remaining changes in the next cycle: %d changes pending", len(self.__changes))
                             delay = self._drain_cycle
                     except aiohttp.ClientError as e:
                         if last_send_on_error:
