@@ -124,7 +124,8 @@ class Publisher():
                 batch = self._build_batch()
                 if len(batch) > 0:
                     try:
-                        self._logger.info("Sending batch of %d changes on %d total pending", len(batch), len(self.__changes))
+                        if len(self.__changes) > 0:
+                            self._logger.info("Sending batch of %d changes; %d remaining", len(batch), len(self.__changes))
                         if not await self.send_to_jeedom(self.__build_nested(batch)):
                             self._requeue(batch)
                         elif len(self.__changes) > 0:
@@ -153,11 +154,11 @@ class Publisher():
         size = 0
         for key, value in self.__changes.items():
             if len(batch) >= self._max_changes_per_cycle:
-                self._logger.info("Reached max changes per cycle: %d", self._max_changes_per_cycle)
+                self._logger.debug("Reached max changes per cycle: %d", self._max_changes_per_cycle)
                 break
             item_size = self.__estimate_size(key, value)
             if len(batch) > 0 and size + item_size > self._max_payload_size:
-                self._logger.info("Reached max payload size: %d", self._max_payload_size)
+                self._logger.debug("Reached max payload size: %d", self._max_payload_size)
                 break
             batch[key] = value
             size += item_size
