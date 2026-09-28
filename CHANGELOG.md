@@ -5,7 +5,7 @@
 
 ### Features
 
-- Changes are now queued flat and sent in batches limited by `--maxchangespercycle` (default 1000) and
+- Changes are now queued flat and sent in batches limited by `--maxchangespercycle` (default 5000) and
   `--maxpayloadsize` (default 512 KB); remaining changes are drained with a short delay instead of a full cycle
 
 ### Bug Fixes

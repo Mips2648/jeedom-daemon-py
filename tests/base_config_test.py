@@ -33,7 +33,7 @@ class TestBaseConfig(unittest.TestCase):
         self.assertEqual(config.api_key, "cnysltyql")
         self.assertEqual(config.pid_filename, "123")
         self.assertEqual(config.cycle, 0.5)
-        self.assertEqual(config.max_changes_per_cycle, 1000)
+        self.assertEqual(config.max_changes_per_cycle, 5000)
         self.assertEqual(config.max_payload_size, 512 * 1024)
 
     def test_base_config_parse_limits(self):

@@ -11,7 +11,7 @@ import asyncio
 from typing import Callable, Awaitable
 import aiohttp
 
-DEFAULT_MAX_CHANGES_PER_CYCLE = 1000
+DEFAULT_MAX_CHANGES_PER_CYCLE = 5000
 DEFAULT_MAX_PAYLOAD_SIZE = 512 * 1024
 
 
