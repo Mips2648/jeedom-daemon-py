@@ -1,6 +1,18 @@
 # CHANGELOG
 
 
+## Unreleased
+
+### Features
+
+- Changes are now queued flat and sent in batches limited by `--maxchangespercycle` (default 200) and
+  `--maxpayloadsize` (default 512 KB); remaining changes are drained with a short delay instead of a full cycle
+
+### Bug Fixes
+
+- A failed batch is now requeued without overwriting values updated in the meantime
+
+
 ## v1.2.9 (2025-03-14)
 
 ### Bug Fixes
