@@ -42,7 +42,7 @@ pip3 install jeedomdaemon
 ### Via requirements.txt
 
 ```txt
-jeedomdaemon~=1.2.0
+jeedomdaemon~=1.3.0
 ```
 
 ## Quick start
@@ -110,6 +110,10 @@ Without additional work, your daemon will accept following argument when started
 * --apikey - the API key use to valid communication
 * --pid - the pid filename
 * --cycle - a float value giving at which frequency the daemon should send requests to your PHP code, by default every 0.5s (max)
+* --maxchangespercycle - maximum number of changes (final keys) sent in a single request, by default 5000
+* --maxpayloadsize - maximum approximate size in bytes of a single request payload, by default 524288 (512 KB)
+
+Changes added with `add_change` are queued and sent in batches: a batch stops as soon as one of the two limits above is reached, and the next batch is sent shortly after (without waiting a full cycle) as long as the queue is not empty. This avoids sending a huge payload to Jeedom when a burst of changes occurs, e.g. at start-up. A single value bigger than `--maxpayloadsize` is sent alone so it never blocks the queue.
 
 It will happen that you need to receive some additional values from Jeedom to be able to start your daemon, like a user & password to login somewhere. In that case create a child class like in this example and provide it during daemon initialisation:
 

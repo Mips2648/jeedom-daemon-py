@@ -9,8 +9,10 @@ import logging
 import json
 import asyncio
 from typing import Callable, Awaitable
-from collections.abc import Mapping
 import aiohttp
+
+DEFAULT_MAX_CHANGES_PER_CYCLE = 5000
+DEFAULT_MAX_PAYLOAD_SIZE = 512 * 1024
 
 
 class Listener():
@@ -62,16 +64,26 @@ class Publisher():
     It can be done either immediately by calling function `send_to_jeedom` or in cycle by calling function `add_change`.
 
     For the "cycle" mode, a task must be created by calling `create_send_task`
+
+    Pending changes are stored flat (full key -> value) and are split in batches limited by both
+    `max_changes_per_cycle` and `max_payload_size`; the nested structure expected by Jeedom is rebuilt at send time.
     """
 
-    def __init__(self, callback_url: str, api_key: str, cycle: float = 0.5) -> None:
+    def __init__(self, callback_url: str, api_key: str, cycle: float = 0.5,
+                 max_changes_per_cycle: int = DEFAULT_MAX_CHANGES_PER_CYCLE,
+                 max_payload_size: int = DEFAULT_MAX_PAYLOAD_SIZE) -> None:
         self._jeedom_session = aiohttp.ClientSession()
         self._callback_url = callback_url
         self._api_key = api_key
         self._cycle = cycle if (cycle > 0 and cycle < 10) else 0.5
+        self._max_changes_per_cycle = max_changes_per_cycle if max_changes_per_cycle > 0 else DEFAULT_MAX_CHANGES_PER_CYCLE
+        self._max_payload_size = max_payload_size if max_payload_size > 0 else DEFAULT_MAX_PAYLOAD_SIZE
         self._logger = logging.getLogger(__name__)
 
-        self.__changes = {}
+        # short delay used to drain a non-empty queue faster than the nominal cycle
+        self._drain_cycle = min(self._cycle / 10, 0.05)
+
+        self.__changes: dict = {}
 
     async def __aenter__(self):
         return self
@@ -81,7 +93,8 @@ class Publisher():
 
     @property
     def changes(self):
-        return self.__changes
+        """Returns the pending changes as the nested structure that would be sent to Jeedom."""
+        return self.__build_nested(self.__changes)
 
     def create_send_task(self):
         """ Helper function to create the send task.
@@ -107,27 +120,82 @@ class Publisher():
         try:
             last_send_on_error = False
             while True:
-                if len(self.__changes) > 0:
-                    changes = self.__changes
-                    self.__changes = {}
-
+                delay = self._cycle
+                batch = self._build_batch()
+                if len(batch) > 0:
                     try:
-                        if not await self.send_to_jeedom(changes):
-                            await self.__merge_dict(self.__changes, changes)
+                        if len(self.__changes) > 0:
+                            self._logger.info("Sending batch of %d changes; %d remaining", len(batch), len(self.__changes))
+                        if not await self.send_to_jeedom(self.__build_nested(batch)):
+                            self._requeue(batch)
+                        elif len(self.__changes) > 0:
+                            delay = self._drain_cycle
                     except aiohttp.ClientError as e:
                         if last_send_on_error:
                             self._logger.error("error during send: %s", e)
                         else:
                             self._logger.debug("first time error during send: %s", e)
                             last_send_on_error = True
-                        await self.__merge_dict(self.__changes, changes)
+                        self._requeue(batch)
                     except TypeError as e:
                         self._logger.error("error during send: %s. No new try to send!", e)
                     else:
                         last_send_on_error = False
-                await asyncio.sleep(self._cycle)
+                await asyncio.sleep(delay)
         except asyncio.CancelledError:
             self._logger.info("Send async cancelled")
+
+    def _build_batch(self) -> dict:
+        """Extract the next batch of pending changes (flat dict), honouring both configured limits.
+
+        A value which alone exceeds the size limit is sent on its own instead of blocking the queue.
+        """
+        batch = {}
+        size = 0
+        for key, value in self.__changes.items():
+            if len(batch) >= self._max_changes_per_cycle:
+                self._logger.debug("Reached max changes per cycle: %d", self._max_changes_per_cycle)
+                break
+            item_size = self.__estimate_size(key, value)
+            if len(batch) > 0 and size + item_size > self._max_payload_size:
+                self._logger.debug("Reached max payload size: %d", self._max_payload_size)
+                break
+            batch[key] = value
+            size += item_size
+
+        for key in batch:
+            del self.__changes[key]
+        return batch
+
+    def _requeue(self, batch: dict):
+        """Put back a failed batch without overwriting values updated in the meantime."""
+        for key, value in batch.items():
+            self.__changes.setdefault(key, value)
+
+    def __estimate_size(self, key: str, value) -> int:
+        try:
+            serialized = json.dumps(value, default=lambda d: self.__encoder(d))
+        except (TypeError, OverflowError, ValueError):
+            serialized = str(value)
+        return len(key) + len(serialized) + 8
+
+    @staticmethod
+    def __build_nested(flat_changes: dict) -> dict:
+        nested = {}
+        for key, value in flat_changes.items():
+            if key.find('::') == -1:
+                nested[key] = value
+                continue
+            parts = key.split('::')
+            node = nested
+            for part in parts[:-1]:
+                child = node.get(part)
+                if not isinstance(child, dict):
+                    child = {}
+                    node[part] = child
+                node = child
+            node[parts[-1]] = value
+        return nested
 
     def __encoder(self, obj):
         try:
@@ -172,27 +240,9 @@ class Publisher():
     async def add_change(self, key: str, value):
         """
         Add a key/value pair to the payload of the next cycle, several levels can be provided at once by separating keys with `::`
-        If a key already exists the value will be replaced by the newest; None value will be ignored
+        If a key already exists the value will be replaced by the newest, keeping its position in the queue; None value will be ignored
         """
         if value is None:
             return
 
-        if key.find('::') != -1:
-
-            changes = value
-            for k in reversed(key.split('::')):
-                tmp_changes = {
-                    k: changes
-                }
-                changes = tmp_changes
-            await self.__merge_dict(self.__changes, changes)
-        else:
-            self.__changes[key] = value
-
-    async def __merge_dict(self, dic1: dict, dic2: dict):
-        for key, val2 in dic2.items():
-            val1 = dic1.get(key)  # returns None if v1 has no value for this key
-            if isinstance(val1, Mapping) and isinstance(val2, Mapping):
-                await self.__merge_dict(val1, val2)
-            else:
-                dic1[key] = val2
+        self.__changes[key] = value

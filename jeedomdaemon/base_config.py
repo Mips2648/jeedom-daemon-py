@@ -9,6 +9,8 @@ from __future__ import annotations
 import argparse
 from typing import Sequence
 
+from .aio_connector import DEFAULT_MAX_CHANGES_PER_CYCLE, DEFAULT_MAX_PAYLOAD_SIZE
+
 
 class BaseConfig():
     """Base config class, if you need a custom configuration you can inherit from this class
@@ -21,6 +23,8 @@ class BaseConfig():
     * --apikey
     * --pid
     * --cycle
+    * --maxchangespercycle
+    * --maxpayloadsize
 
     If you need additional arguments then simply create a child class and add them in your constructor, e.g.:
         ```
@@ -44,6 +48,8 @@ class BaseConfig():
         self.add_argument("--apikey", help="Plugin API Key", type=str)
         self.add_argument("--pid", help="daemon pid", type=str)
         self.add_argument("--cycle", help="cycle", type=float, default=0.5)
+        self.add_argument("--maxchangespercycle", help="Maximum number of changes (leaves) sent in a single request", type=int, default=DEFAULT_MAX_CHANGES_PER_CYCLE)
+        self.add_argument("--maxpayloadsize", help="Maximum approximate size in bytes of a single request payload", type=int, default=DEFAULT_MAX_PAYLOAD_SIZE)
 
     def add_argument(self, *args, **kwargs):
         """Add an argument to parse.
@@ -104,3 +110,13 @@ class BaseConfig():
     def cycle(self):
         """Returns the cycle."""
         return float(self._args.cycle)
+
+    @property
+    def max_changes_per_cycle(self):
+        """Returns the maximum number of changes (leaves) sent in a single request."""
+        return int(self._args.maxchangespercycle)
+
+    @property
+    def max_payload_size(self):
+        """Returns the maximum approximate size in bytes of a single request payload."""
+        return int(self._args.maxpayloadsize)
