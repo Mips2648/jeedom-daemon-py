@@ -8,7 +8,7 @@ dynamic = ["version"]
 authors = [{ name = "Mips" }]
 description = "A base to implement Jeedom daemon in python"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.11"
 keywords = ['JEEDOM', 'DAEMON', 'ASYNCIO']
 classifiers = [
     'Development Status :: 5 - Production/Stable', # Chose either "3 - Alpha", "4 - Beta" or "5 - Production/Stable" as the current state of your package
@@ -19,10 +19,13 @@ classifiers = [
     'License :: OSI Approved :: MIT License', # Again, pick a license
 
     'Programming Language :: Python :: 3',    # Specify which python versions that you want to support
-    'Programming Language :: Python :: 3.9',
     'Programming Language :: Python :: 3.11',
+    'Programming Language :: Python :: 3.13',
 ]
-dependencies = ["aiohttp"]
+dependencies = ["aiohttp>=3.14.3"]
+
+[dependency-groups]
+dev = ["flake8", "pytest", "pytest-asyncio", "aioresponses"]
 
 [project.urls]
 Homepage = "https://github.com/Mips2648/jeedom-daemon-py"
@@ -41,4 +44,6 @@ build_command = "python -m pip install build && python -m build"
 version_variables = [
     "jeedomdaemon/version.py:VERSION",
     "jeedomdaemon/__init__.py:__version__",
+    # matches "jeedomdaemon~=X.Y.Z" in README
+    "README.md:jeedomdaemon~",
 ]

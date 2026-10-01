@@ -8,16 +8,16 @@ on:
   workflow_dispatch:
 
 jobs:
-  pytest_39:
-    if: contains(github.event.head_commit.message, ':')
-    uses: ./.github/workflows/pytest-3.9.yml
-
   pytest_311:
     if: contains(github.event.head_commit.message, ':')
     uses: ./.github/workflows/pytest-3.11.yml
 
+  pytest_313:
+    if: contains(github.event.head_commit.message, ':')
+    uses: ./.github/workflows/pytest-3.13.yml
+
   release-on-tests-success:
-    needs: [pytest_39, pytest_311]
+    needs: [pytest_311, pytest_313]
     if: ${{ github.repository == 'Mips2648/jeedom-daemon-py'}}
     runs-on: ubuntu-latest
     concurrency: release

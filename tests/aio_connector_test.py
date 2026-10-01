@@ -1,5 +1,7 @@
 import re
 import pytest
+from aiohttp import web
+from aiohttp.test_utils import TestServer
 from aioresponses import aioresponses
 
 from jeedomdaemon.aio_connector import Publisher
@@ -9,13 +11,20 @@ class TestPublisher():
 
     @pytest.mark.asyncio
     async def test_send_to_jeedom(self):
-        async with Publisher('http://local/', 'cnysltyql') as pub:
-            with aioresponses() as mocked:
-                pattern = re.compile(r'^http://local/\?apikey=.*$')
-                mocked.get(pattern, status=200, body='test')
-                mocked.post(pattern, status=200, body='test')
-                resp = await pub.send_to_jeedom({})
+        received = []
+
+        async def handler(request: web.Request):
+            received.append((request.query.get('apikey'), await request.json()))
+            return web.Response(text='test')
+
+        app = web.Application()
+        app.router.add_post('/', handler)
+        async with TestServer(app) as server:
+            async with Publisher(str(server.make_url('/')), 'cnysltyql') as pub:
+                resp = await pub.send_to_jeedom({'val': 51})
                 assert resp is True
+
+        assert received == [('cnysltyql', {'val': 51})]
 
     @pytest.mark.asyncio
     async def test_send_to_jeedom_timeout(self):
