@@ -1,8 +1,8 @@
 # jeedom-daemon-py
 
-[![pytest 3.9](https://github.com/Mips2648/jeedom-daemon-py/actions/workflows/pytest-3.9.yml/badge.svg)](https://github.com/Mips2648/jeedom-daemon-py/actions/workflows/pytest-3.9.yml)
-
 [![pytest 3.11](https://github.com/Mips2648/jeedom-daemon-py/actions/workflows/pytest-3.11.yml/badge.svg)](https://github.com/Mips2648/jeedom-daemon-py/actions/workflows/pytest-3.11.yml)
+
+[![pytest 3.13](https://github.com/Mips2648/jeedom-daemon-py/actions/workflows/pytest-3.13.yml/badge.svg)](https://github.com/Mips2648/jeedom-daemon-py/actions/workflows/pytest-3.13.yml)
 
 ## Description
 
@@ -11,7 +11,7 @@ It's possible to get a daemon skeleton by typing literally less than 5 lines of 
 
 ## Requirements
 
-* **Python 3.9+**
+* **Python 3.11+**
 
 ## How to install
 
