@@ -10,11 +10,15 @@ on:
 jobs:
   pytest_311:
     if: contains(github.event.head_commit.message, ':')
-    uses: ./.github/workflows/pytest-3.11.yml
+    uses: ./.github/workflows/pytest.yml
+    with:
+      python-version: "3.11"
 
   pytest_313:
     if: contains(github.event.head_commit.message, ':')
-    uses: ./.github/workflows/pytest-3.13.yml
+    uses: ./.github/workflows/pytest.yml
+    with:
+      python-version: "3.13"
 
   release-on-tests-success:
     needs: [pytest_311, pytest_313]
